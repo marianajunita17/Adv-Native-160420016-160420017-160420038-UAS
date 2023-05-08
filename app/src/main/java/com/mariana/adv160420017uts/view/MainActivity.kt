@@ -1,7 +1,8 @@
-package com.mariana.adv160420017uts
+package com.mariana.adv160420017uts.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mariana.adv160420017uts.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
