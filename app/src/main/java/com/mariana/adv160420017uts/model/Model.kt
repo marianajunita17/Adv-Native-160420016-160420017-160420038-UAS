@@ -5,11 +5,11 @@ data class Donation(
     val title: String?,
     val penggalang: String?,
     val terkumpul: String?,
-    val kekurangan: String?,
+    val goals: String?,
     val donatur: String?,
     val hari: String?,
     val kisah: String?,
-    val photoUrl: String
+    val photoUrl: String?
 )
 
 data class MyDonation(
