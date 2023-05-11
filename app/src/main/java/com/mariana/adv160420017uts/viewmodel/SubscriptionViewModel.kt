@@ -16,6 +16,7 @@ import com.mariana.adv160420017uts.model.Subscription
 class SubscriptionViewModel(application: Application): AndroidViewModel(application) {
     val subscriptionLD = MutableLiveData<ArrayList<Subscription>>()
     val loadingLD = MutableLiveData<Boolean>()
+
     val TAG = "volleyTag"
     private var queue:RequestQueue? = null
 
