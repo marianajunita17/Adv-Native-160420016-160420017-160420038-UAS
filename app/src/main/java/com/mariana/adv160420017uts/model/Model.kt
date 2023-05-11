@@ -1,5 +1,7 @@
 package com.mariana.adv160420017uts.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Donation(
     val id: String?,
     val title: String?,
@@ -8,7 +10,7 @@ data class Donation(
     val goals: String?,
     val donatur: String?,
     val hari: String?,
-    val kisah: String?,
+    @SerializedName("photo_url")
     val photoUrl: String?
 )
 
