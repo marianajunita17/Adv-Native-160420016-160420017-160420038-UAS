@@ -11,38 +11,37 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
-import com.mariana.adv160420017uts.model.MyDonation
+import com.mariana.adv160420017uts.model.Subscription
 
-class DonasiListViewModel(application: Application): AndroidViewModel(application) {
-    val myDonationsLD = MutableLiveData<ArrayList<MyDonation>>()
+class SubscriptionViewModel(application: Application): AndroidViewModel(application) {
+    val subscriptionLD = MutableLiveData<ArrayList<Subscription>>()
     val loadingLD = MutableLiveData<Boolean>()
-
     val TAG = "volleyTag"
     private var queue:RequestQueue? = null
 
-    fun refresh() {
+    fun refresh(){
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donasiSaya.json"
+        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/subscription.json"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
-                val sType = object : TypeToken<ArrayList<MyDonation>>() { }.type
-                val result = Gson().fromJson<ArrayList<MyDonation>>(it, sType)
+                val sType = object : TypeToken<ArrayList<Subscription>>() { }.type
+                val result = Gson().fromJson<ArrayList<Subscription>>(it, sType)
 
-                myDonationsLD.value = result
+                subscriptionLD.value = result
                 loadingLD.value = false
 
-                Log.d("involleymydonation", result.toString())
+                Log.d("volleysubscription", result.toString())
             },
             {
-                Log.d("involleymydonation", it.toString())
+                Log.d("volleysubcription", it.toString())
                 loadingLD.value = false
             })
 
         stringRequest.tag = TAG
-        queue?.add(stringRequest)
+        queue?.cancelAll(TAG)
     }
 }

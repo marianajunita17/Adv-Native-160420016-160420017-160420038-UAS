@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.donasi_list_item.view.*
 
 class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
     :RecyclerView.Adapter<DonateListAdapter.DonasiListViewHolder>() {
-    class DonasiListViewHolder(var view: View) :RecyclerView.ViewHolder(view)
+    class DonasiListViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
     fun updateMyDonationList(newMyDonationList: ArrayList<MyDonation>){
         myDonationList.clear()

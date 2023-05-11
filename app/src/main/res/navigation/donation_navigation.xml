@@ -40,12 +40,10 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/actionDetailHome"
+            app:destination="@id/itemHome" />
     </fragment>
-    <fragment
-        android:id="@+id/itemInbox"
-        android:name="com.mariana.adv160420017uts.view.InboxFragment"
-        android:label="fragment_inbox"
-        tools:layout="@layout/fragment_inbox" />
     <fragment
         android:id="@+id/itemSaldo"
         android:name="com.mariana.adv160420017uts.view.BalanceFragment"
@@ -64,5 +62,13 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/actionDetailDonate"
+            app:destination="@id/itemDonate" />
     </fragment>
+    <fragment
+        android:id="@+id/itemBulanan"
+        android:name="com.mariana.adv160420017uts.view.SubscriptionFragment"
+        android:label="fragment_subscription"
+        tools:layout="@layout/fragment_subscription" />
 </navigation>

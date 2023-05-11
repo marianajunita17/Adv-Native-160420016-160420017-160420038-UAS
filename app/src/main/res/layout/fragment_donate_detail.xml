@@ -82,6 +82,16 @@
             android:text="Donasi lagi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTotal" />
+
+        <ProgressBar
+            android:id="@+id/progressDonateDetail"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDetailDonasi"
+            app:layout_constraintEnd_toEndOf="@+id/imgDetailDonasi"
+            app:layout_constraintStart_toStartOf="@+id/imgDetailDonasi"
+            app:layout_constraintTop_toTopOf="@+id/imgDetailDonasi" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

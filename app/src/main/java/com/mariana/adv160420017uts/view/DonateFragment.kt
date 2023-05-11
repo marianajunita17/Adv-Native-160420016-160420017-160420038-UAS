@@ -21,7 +21,7 @@ class DonateFragment : Fragment() {
     private val donateListAdapter = DonateListAdapter(arrayListOf())
 
     fun observeViewModel(){
-        viewModel.myDonationLD.observe(viewLifecycleOwner, Observer {
+        viewModel.myDonationsLD.observe(viewLifecycleOwner, Observer {
             donateListAdapter.updateMyDonationList(it)
         })
 

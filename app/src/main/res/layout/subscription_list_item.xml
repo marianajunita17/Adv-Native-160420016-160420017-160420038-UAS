@@ -11,19 +11,21 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imgDonasiSaya"
-                android:layout_width="wrap_content"
+                android:id="@+id/imgSubscription"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,44 +33,35 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/txtJudulDonasi"
+                android:id="@+id/txtJudulSubs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Judul donasi"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="TextView"
                 app:fontFamily="sans-serif-medium"
-                app:layout_constraintStart_toEndOf="@+id/imgDonasiSaya"
+                app:layout_constraintStart_toEndOf="@+id/imgSubscription"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtTanggalDonasi"
+                android:id="@+id/txtUangSubs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="29 Ags 2022"
-                app:layout_constraintStart_toEndOf="@+id/imgDonasiSaya"
-                app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasi" />
-
-            <Button
-                android:id="@+id/btnDonasiSaya"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="More"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Rp125.000/Bulan"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/imgSubscription" />
 
             <ProgressBar
-                android:id="@+id/progressDonasi"
+                android:id="@+id/progressSubsItem"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/imgDonasiSaya"
-                app:layout_constraintEnd_toEndOf="@+id/imgDonasiSaya"
-                app:layout_constraintStart_toStartOf="@+id/imgDonasiSaya"
-                app:layout_constraintTop_toTopOf="@+id/imgDonasiSaya" />
+                app:layout_constraintBottom_toBottomOf="@+id/imgSubscription"
+                app:layout_constraintEnd_toEndOf="@+id/imgSubscription"
+                app:layout_constraintStart_toStartOf="@+id/imgSubscription"
+                app:layout_constraintTop_toTopOf="@+id/imgSubscription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,8 +24,8 @@ class HomeDetailViewModel(application: Application): AndroidViewModel(applicatio
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
-                val dType = object : TypeToken<ArrayList<Donation>>() { }.type
-                val result = Gson().fromJson<ArrayList<Donation>>(it, dType)
+                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
+                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
 
                 for (d in result){
                     if (d.id == id){

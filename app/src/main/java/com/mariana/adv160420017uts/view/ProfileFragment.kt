@@ -22,6 +22,7 @@ class ProfileFragment : Fragment() {
             imgProfile.loadImage(it.photoUrl, progressBarProfile)
             txtUsername.setText(it.username)
             txtTelp.setText(it.numberTelp)
+            txtSaldoProfile.setText(it.saldo)
         })
     }
 

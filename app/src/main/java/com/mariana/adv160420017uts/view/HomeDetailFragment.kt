@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.util.loadImage
 import com.mariana.adv160420017uts.viewmodel.HomeDetailViewModel
@@ -44,6 +45,11 @@ class HomeDetailFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(HomeDetailViewModel::class.java)
         viewModel.fetch(id)
+
+        btnDonasikan.setOnClickListener {
+            val action = HomeDetailFragmentDirections.actionDetailHome()
+            Navigation.findNavController(it).navigate(action)
+        }
 
         observeViewModel()
     }

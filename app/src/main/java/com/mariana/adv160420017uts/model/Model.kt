@@ -17,10 +17,14 @@ data class Donation(
 data class MyDonation(
     val id: String?,
     val status: String?,
+    @SerializedName("title")
     val judul: String?,
-    val photoUrl: String?,
+    @SerializedName("total")
+    val totalDonasi: String?,
+    @SerializedName("date")
     val tanggalDonasi: String?,
-    val totalDonasi: String?
+    @SerializedName("photo_url")
+    val photoUrl: String?
 )
 
 data class User(
@@ -33,6 +37,15 @@ data class User(
     val profession: String?,
     @SerializedName("telp")
     val numberTelp: String?,
+    val saldo: String?,
+    @SerializedName("photo_url")
+    val photoUrl: String?
+)
+
+data class Subscription(
+    val id: String?,
+    val title: String?,
+    val dana: String?,
     @SerializedName("photo_url")
     val photoUrl: String?
 )

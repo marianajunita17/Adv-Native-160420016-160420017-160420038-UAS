@@ -13,16 +13,12 @@ import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.MyDonation
 
-class DonasiListViewModel(application: Application): AndroidViewModel(application) {
-    val myDonationsLD = MutableLiveData<ArrayList<MyDonation>>()
-    val loadingLD = MutableLiveData<Boolean>()
-
+class DonateDetailViewModel(application: Application): AndroidViewModel(application) {
+    val myDonationLD = MutableLiveData<MyDonation>()
     val TAG = "volleyTag"
-    private var queue:RequestQueue? = null
+    private var queue: RequestQueue? = null
 
-    fun refresh() {
-        loadingLD.value = true
-
+    fun fetch(id: String) {
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donasiSaya.json"
 
@@ -32,14 +28,16 @@ class DonasiListViewModel(application: Application): AndroidViewModel(applicatio
                 val sType = object : TypeToken<ArrayList<MyDonation>>() { }.type
                 val result = Gson().fromJson<ArrayList<MyDonation>>(it, sType)
 
-                myDonationsLD.value = result
-                loadingLD.value = false
+                for (myDonate in result){
+                    if (myDonate.id == id){
+                        myDonationLD.value = myDonate
+                    }
+                }
 
-                Log.d("involleymydonation", result.toString())
+                Log.d("volleydonatedetail", result.toString())
             },
             {
-                Log.d("involleymydonation", it.toString())
-                loadingLD.value = false
+                Log.d("volleydonatedetail", it.toString())
             })
 
         stringRequest.tag = TAG
