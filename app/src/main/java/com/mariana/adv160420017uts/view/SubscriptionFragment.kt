@@ -59,6 +59,6 @@ class SubscriptionFragment : Fragment() {
             refreshLayout.isRefreshing = false
         }
 
-//        observeViewModel()
+        observeViewModel()
     }
 }
