@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mariana.adv160420017uts.R
@@ -58,6 +59,6 @@ class SubscriptionFragment : Fragment() {
             refreshLayout.isRefreshing = false
         }
 
-        observeViewModel()
+//        observeViewModel()
     }
 }

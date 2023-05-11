@@ -31,7 +31,7 @@ class SubscriptionAdapter(val subscriptionList:ArrayList<Subscription>)
 
     override fun onBindViewHolder(holder: SubscriptionViewHolder, position: Int) {
         holder.view.txtJudulSubs.text = subscriptionList[position].title
-        holder.view.txtUang.text = "Rp" + subscriptionList[position].dana + "/Bulan"
+        holder.view.txtUangSubs.text = "Rp" + subscriptionList[position].dana + "/Bulan"
 
         var imgView = holder.view.findViewById<ImageView>(R.id.imgSubscription)
         var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressSubsItem)

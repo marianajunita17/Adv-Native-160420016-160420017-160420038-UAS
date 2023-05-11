@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.model.Subscription
 
 class SubscriptionViewModel(application: Application): AndroidViewModel(application) {
@@ -20,7 +21,7 @@ class SubscriptionViewModel(application: Application): AndroidViewModel(applicat
     val TAG = "volleyTag"
     private var queue:RequestQueue? = null
 
-    fun refresh(){
+    fun refresh() {
         loadingLD.value = true
 
         queue = Volley.newRequestQueue(getApplication())
@@ -35,14 +36,14 @@ class SubscriptionViewModel(application: Application): AndroidViewModel(applicat
                 subscriptionLD.value = result
                 loadingLD.value = false
 
-                Log.d("volleysubscription", result.toString())
+                Log.d("involleysubscription", result.toString())
             },
             {
-                Log.d("volleysubcription", it.toString())
+                Log.d("involleysubscription", it.toString())
                 loadingLD.value = false
             })
 
         stringRequest.tag = TAG
-        queue?.cancelAll(TAG)
+        queue?.add(stringRequest)
     }
 }
