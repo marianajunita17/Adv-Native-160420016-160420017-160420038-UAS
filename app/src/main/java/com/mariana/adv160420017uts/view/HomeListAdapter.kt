@@ -26,7 +26,7 @@ class HomeListAdapter(val donationList:ArrayList<Donation>)
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.home_list_item, parent, false)
 
-        return  HomeViewHolder(view)
+        return HomeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {

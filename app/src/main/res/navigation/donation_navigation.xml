@@ -27,7 +27,11 @@
         android:id="@+id/itemDonate"
         android:name="com.mariana.adv160420017uts.view.DonateFragment"
         android:label="fragment_donate"
-        tools:layout="@layout/fragment_donate" />
+        tools:layout="@layout/fragment_donate" >
+        <action
+            android:id="@+id/actionDonateDetail"
+            app:destination="@id/donateDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeDetailFragment"
         android:name="com.mariana.adv160420017uts.view.HomeDetailFragment"
@@ -52,4 +56,13 @@
         android:name="com.mariana.adv160420017uts.view.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/donateDetailFragment"
+        android:name="com.mariana.adv160420017uts.view.DonateDetailFragment"
+        android:label="fragment_donate_detail"
+        tools:layout="@layout/fragment_donate_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>
