@@ -22,3 +22,17 @@ data class MyDonation(
     val tanggalDonasi: String?,
     val totalDonasi: String?
 )
+
+data class User(
+    val id: String?,
+    @SerializedName("user_name")
+    val username: String?,
+    val gender: String?,
+    val dob: String?,
+    @SerializedName("profesi")
+    val profession: String?,
+    @SerializedName("telp")
+    val numberTelp: String?,
+    @SerializedName("photo_url")
+    val photoUrl: String?
+)

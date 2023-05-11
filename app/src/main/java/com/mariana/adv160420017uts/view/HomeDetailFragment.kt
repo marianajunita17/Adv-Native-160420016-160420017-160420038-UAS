@@ -19,17 +19,14 @@ class HomeDetailFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.donationLD.observe(viewLifecycleOwner, Observer {
-            imgDonation.loadImage(it.photoUrl, progressBar)
+            imgDonation.loadImage(it.photoUrl, progressBar2)
+            txtJudul.setText(it.title)
+            txtDonatur.setText(it.donatur + " donatur")
+            txtPenggalang.setText(it.penggalang)
+            txtSisaHari.setText(it.hari + " hari lagi")
+            txtTerdanai.setText(it.terkumpul)
+            txtTarget.setText(it.goals)
         })
-//        viewModel.donationLD.observe(viewLifecycleOwner, Observer {
-//            imgDonation.loadImage(it.photoUrl, progressBar)
-////            txtJudul.setText(it.title)
-////            txtDonatur.setText(it.donatur + " donatur")
-////            txtPenggalang.setText(it.penggalang)
-////            txtSisaHari.setText(it.hari + " hari lagi")
-////            txtTerdanai.setText(it.terkumpul)
-////            txtTarget.setText(it.goals)
-//        })
     }
 
     override fun onCreateView(

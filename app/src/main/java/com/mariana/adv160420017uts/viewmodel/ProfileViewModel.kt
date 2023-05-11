@@ -11,29 +11,31 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.model.User
+import java.util.*
+import kotlin.collections.ArrayList
 
-class HomeDetailViewModel(application: Application): AndroidViewModel(application) {
-    val donationLD = MutableLiveData<Donation>()
+class ProfileViewModel(application: Application): AndroidViewModel(application) {
+    val profileLD = MutableLiveData<User>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
-    fun fetch(id: String) {
+    fun fetch() {
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
+        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/profileUser.json"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
-                val dType = object : TypeToken<ArrayList<Donation>>() { }.type
-                val result = Gson().fromJson<ArrayList<Donation>>(it, dType)
+                val sType = object : TypeToken<ArrayList<User>>() { }.type
+                val result = Gson().fromJson<ArrayList<User>>(it, sType)
 
-                for (d in result){
-                    if (d.id == id){
-                        donationLD.value = d
-                        Log.d("loopdetail", d.id.toString())
+                for(user in result){
+                    if(user.id == "1"){
+                        profileLD.value = user
                     }
                 }
-                Log.d("involleydetail", result.toString())
+                Log.d("involleyprofile", result.toString())
             },
             {
                 Log.d("involleydetail", it.toString())

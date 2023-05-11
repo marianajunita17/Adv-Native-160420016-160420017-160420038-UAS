@@ -24,11 +24,12 @@
             android:id="@+id/txtJudul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Donation Title"
             android:textSize="24sp"
             app:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgDonation" />
 
@@ -137,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="56dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="60dp"
             android:text="Bagikan"
             app:icon="@drawable/ic_baseline_share_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -148,10 +149,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="44dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="60dp"
             android:text="Donasikan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDonation"
+            app:layout_constraintEnd_toEndOf="@+id/imgDonation"
+            app:layout_constraintStart_toStartOf="@+id/imgDonation"
+            app:layout_constraintTop_toTopOf="@+id/imgDonation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

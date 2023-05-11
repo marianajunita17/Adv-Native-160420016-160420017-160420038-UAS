@@ -18,7 +18,11 @@
         android:id="@+id/itemProfile"
         android:name="com.mariana.adv160420017uts.view.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/actionProfileEdit"
+            app:destination="@id/profileEditFragment" />
+    </fragment>
     <fragment
         android:id="@+id/itemDonate"
         android:name="com.mariana.adv160420017uts.view.DonateFragment"
@@ -33,4 +37,19 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/itemInbox"
+        android:name="com.mariana.adv160420017uts.view.InboxFragment"
+        android:label="fragment_inbox"
+        tools:layout="@layout/fragment_inbox" />
+    <fragment
+        android:id="@+id/itemSaldo"
+        android:name="com.mariana.adv160420017uts.view.BalanceFragment"
+        android:label="fragment_balance"
+        tools:layout="@layout/fragment_balance" />
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.mariana.adv160420017uts.view.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

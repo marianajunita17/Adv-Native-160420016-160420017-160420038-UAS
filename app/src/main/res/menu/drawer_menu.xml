@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/itemNotification"
+        android:id="@+id/itemInbox"
         android:title="notification"
         android:icon="@drawable/ic_baseline_notifications_24"
         app:showAsAction="always" />
