@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,6 @@ import androidx.navigation.Navigation
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.util.loadImage
 import com.mariana.adv160420017uts.viewmodel.DonateDetailViewModel
-import com.mariana.adv160420017uts.viewmodel.HomeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_donate_detail.*
 
 class DonateDetailFragment : Fragment() {

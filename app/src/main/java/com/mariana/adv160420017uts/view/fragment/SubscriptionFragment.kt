@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.view.adapter.SubscriptionAdapter
 import com.mariana.adv160420017uts.viewmodel.SubscriptionViewModel
-import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_subscription.*
 
 class SubscriptionFragment : Fragment() {

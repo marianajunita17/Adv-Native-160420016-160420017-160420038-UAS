@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.model.Subscription
 import com.mariana.adv160420017uts.util.loadImage
-import kotlinx.android.synthetic.main.home_list_item.view.*
 import kotlinx.android.synthetic.main.subscription_list_item.view.*
 
 class SubscriptionAdapter(val subscriptionList:ArrayList<Subscription>)

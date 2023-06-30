@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemHome"
-        android:name="com.mariana.adv160420017uts.view.HomeFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
-        android:name="com.mariana.adv160420017uts.view.ProfileFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemDonate"
-        android:name="com.mariana.adv160420017uts.view.DonateFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.DonateFragment"
         android:label="fragment_donate"
         tools:layout="@layout/fragment_donate" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeDetailFragment"
-        android:name="com.mariana.adv160420017uts.view.HomeDetailFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.HomeDetailFragment"
         android:label="fragment_home_detail"
         tools:layout="@layout/fragment_home_detail" >
         <argument
@@ -46,17 +46,17 @@
     </fragment>
     <fragment
         android:id="@+id/itemSaldo"
-        android:name="com.mariana.adv160420017uts.view.BalanceFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.BalanceFragment"
         android:label="fragment_balance"
         tools:layout="@layout/fragment_balance" />
     <fragment
         android:id="@+id/profileEditFragment"
-        android:name="com.mariana.adv160420017uts.view.EditProfileFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/donateDetailFragment"
-        android:name="com.mariana.adv160420017uts.view.DonateDetailFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.DonateDetailFragment"
         android:label="fragment_donate_detail"
         tools:layout="@layout/fragment_donate_detail" >
         <argument
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemBulanan"
-        android:name="com.mariana.adv160420017uts.view.SubscriptionFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.SubscriptionFragment"
         android:label="fragment_subscription"
         tools:layout="@layout/fragment_subscription" />
 </navigation>

@@ -11,35 +11,53 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.util.buildDb
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlin.coroutines.CoroutineContext
 
 class HomeDetailViewModel(application: Application): AndroidViewModel(application) {
+
     val donationLD = MutableLiveData<Donation>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+    private val job = Job()
 
-    fun fetch(id: String) {
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
-                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
+    fun addTodo(donation: Donation){
+        launch {
+            val db = buildDb(getApplication())
+            db.donationDao().insertAll(donation)
+        }
+    }
 
-                for (d in result){
-                    if (d.id == id){
-                        donationLD.value = d
-                        Log.d("loopdetail", d.id.toString())
-                    }
-                }
-                Log.d("involleydetail", result.toString())
-            },
-            {
-                Log.d("involleydetail", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+    fun fetch(id: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            donationLD.value = db.donationDao().selectDonation(id)
+        }
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
+//                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
+//
+//                for (d in result){
+//                    if (d.id == id){
+//                        donationLD.value = d
+//                        Log.d("loopdetail", d.id.toString())
+//                    }
+//                }
+//                Log.d("involleydetail", result.toString())
+//            },
+//            {
+//                Log.d("involleydetail", it.toString())
+//            })
+//
+//        stringRequest.tag = TAG
+//        queue?.add(stringRequest)
     }
 }

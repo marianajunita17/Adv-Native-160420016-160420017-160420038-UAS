@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.view.adapter.HomeListAdapter
 import com.mariana.adv160420017uts.viewmodel.HomeListViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 

@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -33,10 +33,10 @@ class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
         holder.view.txtJudulDonasi.text = myDonationList[position].judul
         holder.view.txtTanggalDonasi.text = myDonationList[position].tanggalDonasi
 
-        holder.view.btnDonasiSaya.setOnClickListener {
-            val action = DonateFragmentDirections.actionDonateDetail(myDonationList[position].id.toString())
-            Navigation.findNavController(it).navigate(action)
-        }
+//        holder.view.btnDonasiSaya.setOnClickListener {
+//            val action = DonateFragmentDirections.actionDonateDetail(myDonationList[position].id.toString())
+//            Navigation.findNavController(it).navigate(action)
+//        }
 
         var imageView = holder.view.findViewById<ImageView>(R.id.imgDonasiSaya)
         var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressDonasi)

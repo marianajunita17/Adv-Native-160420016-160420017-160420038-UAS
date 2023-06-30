@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.util.loadImage
 import com.mariana.adv160420017uts.viewmodel.HomeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_home_detail.*
-import kotlinx.android.synthetic.main.home_list_item.*
 
 class HomeDetailFragment : Fragment() {
     private lateinit var viewModel: HomeDetailViewModel

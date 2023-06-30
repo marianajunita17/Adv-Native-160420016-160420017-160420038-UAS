@@ -1,4 +1,4 @@
-package com.mariana.adv160420017uts.view
+package com.mariana.adv160420017uts.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View

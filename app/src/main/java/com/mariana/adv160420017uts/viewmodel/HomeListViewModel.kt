@@ -11,45 +11,65 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class HomeListViewModel(application: Application):AndroidViewModel(application) {
-    val donationsLD = MutableLiveData<ArrayList<Donation>>()
+class HomeListViewModel(application: Application)
+    :AndroidViewModel(application), CoroutineScope {
+
+    val donationsLD = MutableLiveData<List<Donation>>()
     val donationLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue:RequestQueue? = null
+
+    private var job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 
     fun refresh() {
-        donationLoadErrorLD.value = true
+        donationLoadErrorLD.value = false
         loadingLD.value = true
 
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
+        launch {
+            val db = buildDb(getApplication())
+            donationsLD.postValue(db.donationDao().selectAllDonation())
+        }
 
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
-                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
-
-                donationsLD.value = result
-                loadingLD.value = false
-                donationLoadErrorLD.value = false
-
-                Log.d("involley", result.toString())
-            },
-            {
-                Log.d("involley", it.toString())
-                donationLoadErrorLD.value = true
-                loadingLD.value = false
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
+//                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
+//
+//                donationsLD.value = result
+//                loadingLD.value = false
+//                donationLoadErrorLD.value = false
+//
+//                Log.d("involley", result.toString())
+//            },
+//            {
+//                Log.d("involley", it.toString())
+//                donationLoadErrorLD.value = true
+//                loadingLD.value = false
+//            })
+//
+//        stringRequest.tag = TAG
+//        queue?.add(stringRequest)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
+    fun clearTask(donation: Donation) {
+        launch {
+            val db = buildDb(getApplication())
+            donationsLD.postValue(db.donationDao().selectAllDonation())
+        }
+//        super.onCleared()
+//        queue?.cancelAll(TAG)
     }
 }
