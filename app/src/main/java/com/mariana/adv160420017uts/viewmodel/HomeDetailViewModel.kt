@@ -12,11 +12,13 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.util.buildDb
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class HomeDetailViewModel(application: Application): AndroidViewModel(application) {
+class HomeDetailViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
 
     val donationLD = MutableLiveData<Donation>()
     private val job = Job()
