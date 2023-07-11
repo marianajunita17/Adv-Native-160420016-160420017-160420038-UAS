@@ -17,11 +17,11 @@ import java.lang.Exception
 val DB_NAME = "donasidb"
 
 fun buildDb(context: Context):DonationDatabase {
-//    val db = databaseBuilder(context,
-//        DonationDao::class.java, DB_NAME)
-//        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
-//        .build()
-//    return db
+    val db = databaseBuilder(context,
+        DonationDatabase::class.java, DB_NAME)
+        .addMigrations(MIGRATION_1_2)
+        .build()
+    return db
 }
 
 val MIGRATION_1_2 = object :Migration(1, 2){
