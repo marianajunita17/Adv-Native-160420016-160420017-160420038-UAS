@@ -2,12 +2,12 @@ package com.mariana.adv160420017uts.view
 
 import android.view.View
 
-interface ButtonDetailDonateClickListener {
-    fun onDetailDonateClickListener(v: View)
+interface ButtonMyDetailDonateClickListener {
+    fun onDetailMyDonateClickListener(v: View)
 }
 
-interface ButtonDonateClickListener {
-    fun onButtonDonate(v: View)
+interface ButtonMyDonateClickListener {
+    fun onButtonMyDonate(v: View)
 }
 
 interface ButtonLoginClickListener {
@@ -16,4 +16,16 @@ interface ButtonLoginClickListener {
 
 interface ButtonRegisterClickListener {
     fun onRegisterClickListener(v: View)
+}
+
+interface ButtonDonateClickListener {
+    fun onDonateClickListener(v: View)
+}
+
+interface ButtonDetailDonateClickListener {
+    fun onDetailDonateClickListener(v: View)
+}
+
+interface ButtonShareClickListener {
+    fun onShareClickListener(v: View)
 }

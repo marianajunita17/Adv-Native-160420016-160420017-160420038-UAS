@@ -1,5 +1,6 @@
 package com.mariana.adv160420017uts.viewmodel
 
+import android.R
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -12,36 +13,66 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.User
+import com.mariana.adv160420017uts.util.donateDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.coroutines.CoroutineContext
 
-class ProfileViewModel(application: Application): AndroidViewModel(application) {
+class ProfileViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val profileLD = MutableLiveData<User>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
+    var result = ""
 
-    fun fetch() {
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/profileUser.json"
+    private var job = Job()
 
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object : TypeToken<ArrayList<User>>() { }.type
-                val result = Gson().fromJson<ArrayList<User>>(it, sType)
+//    val TAG = "volleyTag"
+//    private var queue: RequestQueue? = null
 
-                for(user in result){
-                    if(user.id == "1"){
-                        profileLD.value = user
-                    }
-                }
+    fun login(username: String, password: String) {
+        launch{
+            val db = donateDB(getApplication())
+            if (username != "" && password != "" || username != profileLD.value?.username && password != profileLD.value?.password) {
+                result = "Gagal"
+                Log.d("involleydetail", result.toString())
+            } else {
+                result = "Berhasil"
                 Log.d("involleyprofile", result.toString())
-            },
-            {
-                Log.d("involleydetail", it.toString())
-            })
-
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            }
+        }
+//        queue = Volley.newRequestQueue(getApplication())
+//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/profileUser.json"
+//
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            {
+//                val sType = object : TypeToken<ArrayList<User>>() { }.type
+//                val result = Gson().fromJson<ArrayList<User>>(it, sType)
+//
+//                for(user in result){
+//                    if(user.id == "1"){
+//                        profileLD.value = user
+//                    }
+//                }
+//                Log.d("involleyprofile", result.toString())
+//            },
+//            {
+//                Log.d("involleydetail", it.toString())
+//            })
+//
+//        stringRequest.tag = TAG
+//        queue?.add(stringRequest)
     }
+
+    fun register(user: User) {
+        launch {
+            val db = donateDB(getApplication())
+            db.userDao().register(user)
+        }
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 }

@@ -13,12 +13,14 @@ import com.mariana.adv160420017uts.databinding.DonasiListItemBinding
 import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.util.loadImage
 import com.mariana.adv160420017uts.view.ButtonDonateClickListener
+import com.mariana.adv160420017uts.view.ButtonMyDetailDonateClickListener
+import com.mariana.adv160420017uts.view.ButtonMyDonateClickListener
 import com.mariana.adv160420017uts.view.fragment.DonateDetailFragmentDirections
 import com.mariana.adv160420017uts.view.fragment.DonateFragmentDirections
 import kotlinx.android.synthetic.main.donasi_list_item.view.*
 
 class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
-    :RecyclerView.Adapter<DonateListAdapter.DonasiListViewHolder>(), ButtonDonateClickListener {
+    :RecyclerView.Adapter<DonateListAdapter.DonasiListViewHolder>(), ButtonMyDonateClickListener{
     class DonasiListViewHolder(var view: DonasiListItemBinding) : RecyclerView.ViewHolder(view.root)
 
     fun updateMyDonationList(newMyDonationList: List<MyDonation>){
@@ -36,22 +38,13 @@ class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
     }
 
     override fun onBindViewHolder(holder: DonasiListViewHolder, position: Int) {
-        holder.view.txtJudulDonasi.text = myDonationList[position].judul
-        holder.view.txtTanggalDonasi.text = myDonationList[position].tanggalDonasi
-
-//        holder.view.btnDonasiSaya.setOnClickListener {
-//            val action = DonateFragmentDirections.actionDonateDetail(myDonationList[position].id.toString())
-//            Navigation.findNavController(it).navigate(action)
-//        }
-
-//        var imageView = holder.view.findViewById<ImageView>(R.id.imgDonasiSaya)
-//        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressDonasi)
-//        imageView.loadImage(myDonationList[position].photoUrl, progressBar)
+        holder.view.detailDonate = myDonationList[position]
+        holder.view.detailListener = this
     }
 
     override fun getItemCount(): Int = myDonationList.size
 
-    override fun onButtonDonate(v: View) {
+    override fun onButtonMyDonate(v: View) {
         val id = v.tag.toString()
         val action = DonateFragmentDirections.actionDonateDetail(id)
         Navigation.findNavController(v).navigate(action)

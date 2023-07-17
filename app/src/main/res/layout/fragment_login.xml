@@ -67,26 +67,8 @@
                 android:id="@+id/txtPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={user.password}"
                 android:hint="Password" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout7"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtConfirmPasswordLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Confirm Password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -97,9 +79,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
             android:text="Login"
+            android:onClick="@{login::onLoginClickListener}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
 
         <TextView
             android:id="@+id/textView25"
@@ -121,9 +104,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
             android:text="Register"
+            android:onClick="@{register::onRegisterClickListener}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView25" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</layout>

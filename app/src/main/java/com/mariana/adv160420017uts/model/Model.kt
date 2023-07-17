@@ -1,9 +1,11 @@
 package com.mariana.adv160420017uts.model
 
+import android.view.View
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.mariana.adv160420017uts.view.ButtonDonateClickListener
 
 @Entity
 data class Donation(
@@ -21,9 +23,12 @@ data class Donation(
     val hari: String?,
     @ColumnInfo(name = "photo_url")
     val photoUrl: String?
-) {
+) : ButtonDonateClickListener {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
+    override fun onDonateClickListener(v: View) {
+        TODO("Not yet implemented")
+    }
 }
 
 data class MyDonation(
@@ -43,24 +48,23 @@ data class MyDonation(
 }
 
 data class User(
-    @ColumnInfo(name = "user_name")
-    val username: String?,
+    @PrimaryKey(autoGenerate = false)
+    val username: String,
+    @ColumnInfo(name = "password")
+    val password: String,
     @ColumnInfo(name = "gender")
-    val gender: String?,
+    val gender: String,
     @ColumnInfo(name = "dob")
-    val dob: String?,
+    val dob: String,
     @ColumnInfo(name = "profesi")
-    val profession: String?,
+    val profession: String,
     @ColumnInfo(name = "telp")
-    val numberTelp: String?,
+    val numberTelp: String,
     @ColumnInfo(name = "saldo")
-    val saldo: String?,
+    val saldo: String,
     @ColumnInfo(name = "photo_url")
-    val photoUrl: String?
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id:Int = 0
-}
+    val photoUrl: String
+)
 
 data class Subscription(
     @ColumnInfo(name = "title")

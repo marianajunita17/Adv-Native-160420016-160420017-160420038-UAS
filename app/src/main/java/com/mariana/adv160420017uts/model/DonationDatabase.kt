@@ -8,6 +8,8 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(Donation::class), version = 3)
 abstract class DonationDatabase :RoomDatabase(){
     abstract fun donationDao(): DonationDao
+    abstract fun myDonationDao(): MyDonationDao
+    abstract fun userDao(): UserDao
 
     companion object{
         @Volatile private var instance: DonationDatabase ?= null

@@ -5,18 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.databinding.HomeListItemBinding
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.util.loadImage
+import com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener
+import com.mariana.adv160420017uts.view.ButtonDonateClickListener
+import com.mariana.adv160420017uts.view.fragment.HomeDetailFragmentDirections
+import com.mariana.adv160420017uts.view.fragment.HomeFragmentDirections
 import kotlinx.android.synthetic.main.home_list_item.view.*
 
 class HomeListAdapter(val donationList:ArrayList<Donation>)
-    :RecyclerView.Adapter<HomeListAdapter.HomeViewHolder>() {
-    class HomeViewHolder(var view: View) : RecyclerView.ViewHolder(view)
+    :RecyclerView.Adapter<HomeListAdapter.HomeViewHolder>(), ButtonDonateClickListener {
+    class HomeViewHolder(var view: HomeListItemBinding) : RecyclerView.ViewHolder(view.root)
 
-    fun updateDonationList(newDonationList: ArrayList<Donation>){
+    fun updateDonationList(newDonationList: List<Donation>) {
         donationList.clear()
         donationList.addAll(newDonationList)
         notifyDataSetChanged()
@@ -24,25 +30,26 @@ class HomeListAdapter(val donationList:ArrayList<Donation>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.home_list_item, parent, false)
-
+//        val view = inflater.inflate(R.layout.home_list_item, parent, false)
+        val view = DataBindingUtil.inflate<HomeListItemBinding>(
+            inflater,
+            R.layout.home_list_item,
+            parent,
+            false
+        )
         return HomeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.view.donationTitle.text = donationList[position].title
-        holder.view.txtUang.text = donationList[position].terkumpul
-        holder.view.txtDay.text = donationList[position].hari + " hari lagi"
-
-        holder.view.btnDonate.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeDetail(donationList[position].id.toString())
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        var imageView = holder.view.findViewById<ImageView>(R.id.imageView)
-        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressBar)
-        imageView.loadImage(donationList[position].photoUrl, progressBar)
+        holder.view.donate = donationList[position]
+        holder.view.donateListListener = this
     }
 
     override fun getItemCount(): Int = donationList.size
+
+    override fun onDonateClickListener(v: View) {
+        val id = v.tag.toString()
+        val action = HomeFragmentDirections.actionHomeDetail(id)
+        Navigation.findNavController(v).navigate(action)
+    }
 }

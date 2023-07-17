@@ -6,17 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentDonateDetailBinding
 import com.mariana.adv160420017uts.util.loadImage
+import com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener
+import com.mariana.adv160420017uts.view.ButtonMyDetailDonateClickListener
 import com.mariana.adv160420017uts.viewmodel.DonateDetailViewModel
+import kotlinx.android.synthetic.main.fragment_donate.*
 import kotlinx.android.synthetic.main.fragment_donate_detail.*
 
-class DonateDetailFragment : Fragment() {
+class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener{
     private lateinit var viewModel: DonateDetailViewModel
     private lateinit var dataBinding: FragmentDonateDetailBinding
 
@@ -39,13 +44,22 @@ class DonateDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        var id = ""
 
         if (arguments!=null){
-            viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
-            val donateID = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
-            viewModel.fetch(donateID)
+            id = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
         }
+
+        viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
+        viewModel.fetch(id)
+
+        recViewDonasi.layoutManager = LinearLayoutManager(context)
+        dataBinding.donationListener = this
         observeViewModel()
+    }
+
+    override fun onDetailMyDonateClickListener(v: View) {
+        val action = DonateDetailFragmentDirections.actionDetailDonate()
+        Navigation.findNavController(v).navigate(action)
     }
 }

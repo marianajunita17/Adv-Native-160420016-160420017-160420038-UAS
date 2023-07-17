@@ -47,3 +47,11 @@ fun ImageView.loadImage(url: String?, progressBar: ProgressBar){
             }
         })
 }
+
+fun donateDB(context: Context): DonationDatabase {
+    val db = Room.databaseBuilder(context, DonationDatabase::class.java, DB_NAME).addMigrations(
+        MIGRATION_1_2
+    ).build()
+
+    return db
+}

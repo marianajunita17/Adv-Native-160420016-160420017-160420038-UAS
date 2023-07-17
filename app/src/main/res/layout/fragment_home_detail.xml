@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragment.HomeDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="detailDonationListener"
+            type="com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener" />
+        <variable
+            name="shareDonationListener"
+            type="com.mariana.adv160420017uts.view.ButtonShareClickListener" />
+        <variable
+            name="homeDetailDonation"
+            type="com.mariana.adv160420017uts.model.Donation" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,6 +25,8 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:imageUrl="@{homeDetailDonation.photoUrl}"
+            android:progressBar="@{progressBar2}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Donation Title"
+            android:text="@{homeDetailDonation.title}"
             android:textSize="24sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="26 donatur"
+            android:text="@{homeDetailDonation.penggalang}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtJudul" />
@@ -50,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
-            android:text="123 hari lagi"
+            android:text="@{homeDetailDonation.hari}"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/txtDonatur"
             app:layout_constraintTop_toBottomOf="@+id/txtJudul" />
@@ -71,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Rp10.715.000"
+            android:text="@{homeDetailDonation.terkumpul}"
             android:textSize="16sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="Rp20.000.000"
+            android:text="@{homeDetailDonation.goals}"
             android:textSize="16sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="16dp"
-            android:text="Djarum Fundraiser"
+            android:text="@{homeDetailDonation.donatur}"
             android:textSize="16sp"
             app:fontFamily="sans-serif"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +152,7 @@
             android:layout_marginStart="56dp"
             android:layout_marginBottom="60dp"
             android:text="Bagikan"
+            android:OnClick="@{shareDonationListener::onShareClickListener}"
             app:icon="@drawable/ic_baseline_share_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -151,6 +164,7 @@
             android:layout_marginEnd="44dp"
             android:layout_marginBottom="60dp"
             android:text="Donasikan"
+            android:OnClick="@{detailDonationListener::onDetailDonateClickListener}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -165,4 +179,4 @@
             app:layout_constraintTop_toTopOf="@+id/imgDonation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</layout>

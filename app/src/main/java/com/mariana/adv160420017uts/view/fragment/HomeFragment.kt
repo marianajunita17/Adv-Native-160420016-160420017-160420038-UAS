@@ -19,9 +19,9 @@ class HomeFragment : Fragment() {
     private val homeListAdapter = HomeListAdapter(arrayListOf())
 
     fun observeViewModel(){
-        viewModel.donationsLD.observe(viewLifecycleOwner, Observer {
+        viewModel.donationsLD.observe(viewLifecycleOwner) {
             homeListAdapter.updateDonationList(it)
-        })
+        }
 
         viewModel.donationLoadErrorLD.observe(viewLifecycleOwner, Observer {
             if(it == true){
