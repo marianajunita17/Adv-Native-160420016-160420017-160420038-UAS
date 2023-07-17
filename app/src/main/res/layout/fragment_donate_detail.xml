@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragment.DonateDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="donateDetail"
+            type="com.mariana.adv160420017uts.model.MyDonation" />
+        <variable
+            name="donationListener"
+            type="com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener" />
+
+    </data>
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +23,8 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
+            android:imageUrl="@{donateDetail.photoUrl}"
+            android:progressBar="@{progressDonateDetail}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="Judul Donasi"
+            android:text="@{donateDetail.judul}"
             android:textSize="24sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="29 Ags 2022"
+            android:text="@{donateDetail.tanggalDonasi}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasiDetail" />
@@ -48,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="Pending"
+            android:text="@{donateDetail.status}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasiDetail" />
@@ -69,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="Rp3.000"
+            android:text="@{donateDetail.totalDonasi}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -80,6 +89,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="24dp"
             android:text="Donasi lagi"
+            android:onClick="@{donationListener::onDetailDonateClickListener}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTotal" />
 
@@ -94,4 +104,4 @@
             app:layout_constraintTop_toTopOf="@+id/imgDetailDonasi" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</layout>

@@ -5,18 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.databinding.DonasiListItemBinding
 import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.util.loadImage
+import com.mariana.adv160420017uts.view.ButtonDonateClickListener
+import com.mariana.adv160420017uts.view.fragment.DonateDetailFragmentDirections
+import com.mariana.adv160420017uts.view.fragment.DonateFragmentDirections
 import kotlinx.android.synthetic.main.donasi_list_item.view.*
 
 class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
-    :RecyclerView.Adapter<DonateListAdapter.DonasiListViewHolder>() {
-    class DonasiListViewHolder(var view: View) : RecyclerView.ViewHolder(view)
+    :RecyclerView.Adapter<DonateListAdapter.DonasiListViewHolder>(), ButtonDonateClickListener {
+    class DonasiListViewHolder(var view: DonasiListItemBinding) : RecyclerView.ViewHolder(view.root)
 
-    fun updateMyDonationList(newMyDonationList: ArrayList<MyDonation>){
+    fun updateMyDonationList(newMyDonationList: List<MyDonation>){
         myDonationList.clear()
         myDonationList.addAll(newMyDonationList)
         notifyDataSetChanged()
@@ -24,7 +29,8 @@ class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonasiListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.donasi_list_item, parent, false)
+//        val view = inflater.inflate(R.layout.donasi_list_item, parent, false)
+        val view = DataBindingUtil.inflate<DonasiListItemBinding>(inflater, R.layout.donasi_list_item, parent, false)
 
         return DonasiListViewHolder(view)
     }
@@ -38,10 +44,16 @@ class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
 //            Navigation.findNavController(it).navigate(action)
 //        }
 
-        var imageView = holder.view.findViewById<ImageView>(R.id.imgDonasiSaya)
-        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressDonasi)
-        imageView.loadImage(myDonationList[position].photoUrl, progressBar)
+//        var imageView = holder.view.findViewById<ImageView>(R.id.imgDonasiSaya)
+//        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressDonasi)
+//        imageView.loadImage(myDonationList[position].photoUrl, progressBar)
     }
 
     override fun getItemCount(): Int = myDonationList.size
+
+    override fun onButtonDonate(v: View) {
+        val id = v.tag.toString()
+        val action = DonateFragmentDirections.actionDonateDetail(id)
+        Navigation.findNavController(v).navigate(action)
+    }
 }
