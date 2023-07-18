@@ -12,40 +12,34 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.MyDonation
+import com.mariana.adv160420017uts.util.donateDB
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class DonateDetailViewModel(application: Application):
     AndroidViewModel(application), CoroutineScope {
 
     private val job = Job()
 
-    val myDonationLD = MutableLiveData<MyDonation>()
-//    val TAG = "volleyTag"
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
-    fun fetch(id: String) {
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donasiSaya.json"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<MyDonation>>() { }.type
-//                val result = Gson().fromJson<ArrayList<MyDonation>>(it, sType)
-//
-//                for (myDonate in result){
-//                    if (myDonate.id == id){
-//                        myDonationLD.value = myDonate
-//                    }
-//                }
-//
-//                Log.d("volleydonatedetail", result.toString())
-//            },
-//            {
-//                Log.d("volleydonatedetail", it.toString())
-//            })
-//
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
+    val myDonationLD = MutableLiveData<MyDonation>()
+
+    fun fetch(id: Int) {
+        launch {
+            val db = donateDB(getApplication())
+            myDonationLD.value = db.myDonationDao().detailMyDonation(id)
+        }
+    }
+
+    fun displayMyDonate(id: Int) {
+        launch {
+            val db = donateDB(getApplication())
+            myDonationLD.value = db.myDonationDao().detailMyDonation(id)
+        }
     }
 }

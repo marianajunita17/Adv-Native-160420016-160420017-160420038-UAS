@@ -6,18 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentHomeDetailBinding
-import com.mariana.adv160420017uts.util.loadImage
 import com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener
-import com.mariana.adv160420017uts.view.ButtonMyDetailDonateClickListener
 import com.mariana.adv160420017uts.viewmodel.HomeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_donate.*
-import kotlinx.android.synthetic.main.fragment_home_detail.*
 
 class HomeDetailFragment : Fragment(), ButtonDetailDonateClickListener {
     private lateinit var viewModel: HomeDetailViewModel
@@ -43,15 +39,11 @@ class HomeDetailFragment : Fragment(), ButtonDetailDonateClickListener {
 
         if(arguments!=null){
             val id = HomeDetailFragmentArgs.fromBundle(requireArguments()).id
+            viewModel = ViewModelProvider(this).get(HomeDetailViewModel::class.java)
+            viewModel.fetch(id.toInt())
         }
 
-        viewModel = ViewModelProvider(this).get(HomeDetailViewModel::class.java)
-        viewModel.fetch(id)
-
-        recViewDonasi.layoutManager = LinearLayoutManager(context)
         dataBinding.detailDonationListener = this
-        observeViewModel()
-
         observeViewModel()
     }
 

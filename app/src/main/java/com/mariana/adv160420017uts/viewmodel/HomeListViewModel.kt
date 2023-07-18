@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -11,6 +12,8 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.model.DonationDatabase
+import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,41 +38,20 @@ class HomeListViewModel(application: Application)
         loadingLD.value = true
 
         launch {
-            val db = buildDb(getApplication())
-            donationsLD.postValue(db.donationDao().selectAllDonation())
-        }
+            val db = Room.databaseBuilder(
+                getApplication(),
+                DonationDatabase::class.java, "donateDB"
+            ).build()
 
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
-//                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
-//
-//                donationsLD.value = result
-//                loadingLD.value = false
-//                donationLoadErrorLD.value = false
-//
-//                Log.d("involley", result.toString())
-//            },
-//            {
-//                Log.d("involley", it.toString())
-//                donationLoadErrorLD.value = true
-//                loadingLD.value = false
-//            })
-//
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
+            donationsLD.value = db.donationDao().selectAllDonation()
+            loadingLD.value = false
+        }
     }
 
-    fun clearTask(donation: Donation) {
+    fun insertDonation(myDonation: MyDonation) {
         launch {
             val db = buildDb(getApplication())
-            donationsLD.postValue(db.donationDao().selectAllDonation())
+            db.myDonationDao().donate(myDonation)
         }
-//        super.onCleared()
-//        queue?.cancelAll(TAG)
     }
 }

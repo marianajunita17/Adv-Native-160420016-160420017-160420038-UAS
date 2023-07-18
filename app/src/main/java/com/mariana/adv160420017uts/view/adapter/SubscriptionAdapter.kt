@@ -5,15 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.databinding.SubscriptionListItemBinding
 import com.mariana.adv160420017uts.model.Subscription
 import com.mariana.adv160420017uts.util.loadImage
 import kotlinx.android.synthetic.main.subscription_list_item.view.*
 
 class SubscriptionAdapter(val subscriptionList:ArrayList<Subscription>)
     :RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {
-    class SubscriptionViewHolder(var view: View): RecyclerView.ViewHolder(view)
+    class SubscriptionViewHolder(var view: SubscriptionListItemBinding): RecyclerView.ViewHolder(view.root)
 
     fun updateSubscriptionList(newSubscriptionList: ArrayList<Subscription>){
         subscriptionList.clear()
@@ -23,18 +25,13 @@ class SubscriptionAdapter(val subscriptionList:ArrayList<Subscription>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriptionViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.subscription_list_item, parent, false)
+        val view = DataBindingUtil.inflate<SubscriptionListItemBinding>(inflater, R.layout.subscription_list_item, parent, false)
 
         return SubscriptionViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SubscriptionViewHolder, position: Int) {
-        holder.view.txtJudulSubs.text = subscriptionList[position].title
-        holder.view.txtUangSubs.text = "Rp" + subscriptionList[position].dana + "/Bulan"
-
-        var imgView = holder.view.findViewById<ImageView>(R.id.imgSubscription)
-        var progressBar = holder.view.findViewById<ProgressBar>(R.id.progressSubsItem)
-        imgView.loadImage(subscriptionList[position].photoUrl, progressBar)
+        holder.view.subscription = subscriptionList[position]
     }
 
     override fun getItemCount(): Int = subscriptionList.size

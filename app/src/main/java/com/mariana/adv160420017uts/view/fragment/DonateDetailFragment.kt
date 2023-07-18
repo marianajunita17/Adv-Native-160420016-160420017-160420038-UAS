@@ -44,16 +44,12 @@ class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var id = ""
-
         if (arguments!=null){
-            id = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
+            var id = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
+            viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
+            viewModel.fetch(id)
         }
 
-        viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
-        viewModel.fetch(id)
-
-        recViewDonasi.layoutManager = LinearLayoutManager(context)
         dataBinding.donationListener = this
         observeViewModel()
     }

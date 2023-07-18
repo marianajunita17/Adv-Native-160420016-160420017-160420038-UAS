@@ -41,16 +41,15 @@ class ProfileFragment : Fragment(), ButtonEditProfile {
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val username = ""
-        val telp = ""
-        val saldo = ""
         Toast.makeText(view.context, username, Toast.LENGTH_SHORT).show()
-        viewModel.profile(username, telp, saldo)
+        viewModel.profile(username)
         dataBinding.editProfileListener = this
         observeViewModel()
     }
 
     override fun onEditProfile(v: View) {
-        val action = ProfileFragmentDirections.actionProfileEdit()
+        val username = ""
+        val action = ProfileFragmentDirections.actionProfileEdit(username)
         Navigation.findNavController(v).navigate(action)
     }
 }

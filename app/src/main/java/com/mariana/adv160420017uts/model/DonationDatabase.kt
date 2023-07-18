@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Donation::class), version = 3)
+@Database(entities = arrayOf(Donation::class, User::class, MyDonation::class, Subscription::class), version = 3)
 abstract class DonationDatabase :RoomDatabase(){
     abstract fun donationDao(): DonationDao
     abstract fun myDonationDao(): MyDonationDao

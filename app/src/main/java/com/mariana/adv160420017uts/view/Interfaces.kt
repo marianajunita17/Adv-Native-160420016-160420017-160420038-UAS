@@ -41,7 +41,7 @@ interface ButtonEditProfile {
 }
 
 interface ButtonSaveEditProfile {
-    fun onSaveEditProfile(v: View)
+    fun onSaveEditProfile(v: View, obj: User)
 }
 
 interface ButtonUserDonateClickListener {

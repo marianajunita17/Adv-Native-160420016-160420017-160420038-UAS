@@ -4,12 +4,12 @@ import androidx.room.*
 
 @Dao
 interface MyDonationDao {
-    @Insert(onConflict =  OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg myDonation: MyDonation)
+    @Insert(onConflict =  OnConflictStrategy.ABORT)
+    suspend fun donate(vararg myDonation: MyDonation)
 
     @Query("SELECT * FROM myDonation")
     fun selectAllMyDonation(): List<MyDonation>
 
     @Query("SELECT * FROM myDonation WHERE id= :id")
-    fun selectMyDonation(id:Int): MyDonation
+    fun detailMyDonation(id:Int): MyDonation
 }

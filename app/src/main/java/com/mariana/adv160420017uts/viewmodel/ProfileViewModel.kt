@@ -28,6 +28,9 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     private var job = Job()
 
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
+
     fun login(username: String, password: String) {
         launch{
             val db = donateDB(getApplication())
@@ -70,13 +73,17 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         }
     }
 
-    fun profile(username: String, telp: String, saldo: String){
+    fun profile(username: String){
         launch {
             val db = donateDB(getApplication())
-            profileLD.value = db.userDao().profile(username, telp, saldo)
+            profileLD.value = db.userDao().profile(username)
         }
     }
 
-    override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+    fun editProfile(dob: String, profesi: String, telp: String, username: String) {
+        launch {
+            val db = donateDB(getApplication())
+            db.userDao().editProfile(dob, profesi, telp, username)
+        }
+    }
 }

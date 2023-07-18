@@ -12,9 +12,7 @@
             type="com.mariana.adv160420017uts.view.ButtonMyDonateClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -35,7 +33,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imgDonasiSaya"
+                    android:id="@+id/imgViewDonasiSaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:imageUrl="@{detailDonate.photoUrl}"
@@ -53,7 +51,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@{detailDonate.judul}"
                     app:fontFamily="sans-serif-medium"
-                    app:layout_constraintStart_toEndOf="@+id/imgDonasiSaya"
+                    app:layout_constraintStart_toEndOf="@+id/imgViewDonasiSaya"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -62,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@{detailDonate.tanggalDonasi}"
-                    app:layout_constraintStart_toEndOf="@+id/imgDonasiSaya"
+                    app:layout_constraintStart_toEndOf="@+id/imgViewDonasiSaya"
                     app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasi" />
 
                 <Button
@@ -82,10 +80,10 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgDonasiSaya"
-                    app:layout_constraintEnd_toEndOf="@+id/imgDonasiSaya"
-                    app:layout_constraintStart_toStartOf="@+id/imgDonasiSaya"
-                    app:layout_constraintTop_toTopOf="@+id/imgDonasiSaya" />
+                    app:layout_constraintBottom_toBottomOf="@+id/imgViewDonasiSaya"
+                    app:layout_constraintEnd_toEndOf="@+id/imgViewDonasiSaya"
+                    app:layout_constraintStart_toStartOf="@+id/imgViewDonasiSaya"
+                    app:layout_constraintTop_toTopOf="@+id/imgViewDonasiSaya" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

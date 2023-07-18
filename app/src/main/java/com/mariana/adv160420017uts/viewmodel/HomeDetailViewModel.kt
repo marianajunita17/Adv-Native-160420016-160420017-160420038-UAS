@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,19 +25,19 @@ class HomeDetailViewModel(application: Application): AndroidViewModel(applicatio
     private val job = Job()
 
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = job + Dispatchers.IO
 
-    fun addTodo(donation: Donation){
+    fun addDonate(myDonation: MyDonation){
         launch {
             val db = buildDb(getApplication())
-            db.donationDao().insertAll(donation)
+            db.myDonationDao().donate(myDonation)
         }
     }
 
     fun fetch(id: Int) {
         launch {
             val db = buildDb(getApplication())
-            donationLD.value = db.donationDao().selectDonation(id)
+            donationLD.value = db.donationDao().detailDonation(id)
         }
 //        queue = Volley.newRequestQueue(getApplication())
 //        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"

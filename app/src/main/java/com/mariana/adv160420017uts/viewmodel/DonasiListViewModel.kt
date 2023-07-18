@@ -61,11 +61,4 @@ class DonasiListViewModel(application: Application):
 //        stringRequest.tag = TAG
 //        queue?.add(stringRequest)
     }
-
-    fun clearTask(donation: Donation){
-        launch {
-            val db = buildDb(getApplication())
-            myDonationsLD.postValue(db.donationDao().selectAllDonation())
-        }
-    }
 }

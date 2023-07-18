@@ -23,6 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:imageUrl="@{editProfile.photoUrl}"
+            android:progressBar="@{progressBarEdit}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,26 +46,9 @@
                 android:id="@+id/txtNama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama Lengkap" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="@={editProfile.username}"
+                android:hint="Username"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Jenis Kelamin" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,13 +61,14 @@
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtDob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tanggal lahir" />
+                android:hint="Tanggal lahir"
+                android:text="@={editProfile.dob}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -101,6 +87,7 @@
                 android:id="@+id/txtProfesi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={editProfile.profession}"
                 android:hint="Profesi" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,6 +107,7 @@
                 android:id="@+id/txtTelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={editProfile.numberTelp}"
                 android:hint="No. Telepon" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,12 +123,13 @@
 
         <Button
             android:id="@+id/btnSaveEditProfile"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
             android:text="Save"
+            android:onClick="@{(view)->saveEditProfileListener.onSaveEditProfile(view,editProfile)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />

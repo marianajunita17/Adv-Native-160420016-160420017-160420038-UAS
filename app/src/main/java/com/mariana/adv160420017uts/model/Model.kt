@@ -10,69 +10,69 @@ import com.mariana.adv160420017uts.view.ButtonDonateClickListener
 @Entity
 data class Donation(
     @ColumnInfo(name = "title")
-    val title: String?,
+    var title: String,
     @ColumnInfo(name = "penggalang")
-    val penggalang: String?,
+    var penggalang: String,
     @ColumnInfo(name = "terkumpul")
-    val terkumpul: String?,
+    var terkumpul: String,
     @ColumnInfo(name = "goals")
-    val goals: String?,
+    var goals: String,
     @ColumnInfo(name = "donatur")
-    val donatur: String?,
+    var donatur: String,
     @ColumnInfo(name = "hari")
-    val hari: String?,
+    var hari: String,
     @ColumnInfo(name = "photo_url")
-    val photoUrl: String?
-) : ButtonDonateClickListener {
-    @PrimaryKey(autoGenerate = true)
-    var id:Int = 0
-    override fun onDonateClickListener(v: View) {
-        TODO("Not yet implemented")
-    }
-}
-
-data class MyDonation(
-    @ColumnInfo(name = "status")
-    val status: String?,
-    @ColumnInfo(name = "title")
-    val judul: String?,
-    @ColumnInfo(name = "total")
-    val totalDonasi: String?,
-    @ColumnInfo(name = "date")
-    val tanggalDonasi: String?,
-    @ColumnInfo(name = "photo_url")
-    val photoUrl: String?
+    var photoUrl: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
 }
 
+@Entity
+data class MyDonation(
+    @ColumnInfo(name = "status")
+    var status: String,
+    @ColumnInfo(name = "title")
+    var judul: String,
+    @ColumnInfo(name = "total")
+    var totalDonasi: String,
+    @ColumnInfo(name = "date")
+    var tanggalDonasi: String,
+    @ColumnInfo(name = "photo_url")
+    var photoUrl: String
+) {
+    @PrimaryKey(autoGenerate = false)
+    var id:Int = 0
+}
+
+@Entity
 data class User(
     @PrimaryKey(autoGenerate = false)
-    val username: String,
+    var username: String,
     @ColumnInfo(name = "password")
-    val password: String,
+    var password: String,
     @ColumnInfo(name = "gender")
     var gender: Int,
     @ColumnInfo(name = "dob")
-    val dob: String,
+    var dob: String,
     @ColumnInfo(name = "profesi")
-    val profession: String,
+    var profession: String,
     @ColumnInfo(name = "telp")
-    val numberTelp: String,
+    var numberTelp: String,
     @ColumnInfo(name = "saldo")
-    val saldo: String,
+    var saldo: String,
     @ColumnInfo(name = "photo_url")
-    val photoUrl: String
+    var photoUrl: String
 )
 
+@Entity
 data class Subscription(
     @ColumnInfo(name = "title")
-    val title: String?,
+    var title: String,
     @ColumnInfo(name = "dana")
-    val dana: String?,
+    var dana: String,
     @ColumnInfo("photo_url")
-    val photoUrl: String?
+    var photoUrl: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
