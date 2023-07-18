@@ -38,7 +38,6 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        viewModel.fetch()
 
         observeViewModel()
     }

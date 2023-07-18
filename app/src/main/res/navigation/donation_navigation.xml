@@ -43,6 +43,9 @@
         <action
             android:id="@+id/actionDetailHome"
             app:destination="@id/itemHome" />
+        <action
+            android:id="@+id/actionUserDonationFragment"
+            app:destination="@id/userDonationFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemSaldo"
@@ -90,5 +93,14 @@
         <action
             android:id="@+id/actionRegisterHomeFragment"
             app:destination="@id/itemHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDonationFragment"
+        android:name="com.mariana.adv160420017uts.view.fragment.UserDonationFragment"
+        android:label="fragment_user_donation"
+        tools:layout="@layout/fragment_user_donation" >
+        <action
+            android:id="@+id/actionItemMyDonateFragment"
+            app:destination="@id/itemDonate" />
     </fragment>
 </navigation>

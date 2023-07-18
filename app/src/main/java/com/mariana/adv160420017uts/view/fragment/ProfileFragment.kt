@@ -45,7 +45,7 @@ class ProfileFragment : Fragment(), ButtonEditProfile {
         val saldo = ""
         Toast.makeText(view.context, username, Toast.LENGTH_SHORT).show()
         viewModel.profile(username, telp, saldo)
-        dataBinding.profile = this
+        dataBinding.editProfileListener = this
         observeViewModel()
     }
 

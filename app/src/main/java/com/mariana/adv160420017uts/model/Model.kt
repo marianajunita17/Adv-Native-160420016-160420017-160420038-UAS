@@ -53,7 +53,7 @@ data class User(
     @ColumnInfo(name = "password")
     val password: String,
     @ColumnInfo(name = "gender")
-    val gender: String,
+    var gender: Int,
     @ColumnInfo(name = "dob")
     val dob: String,
     @ColumnInfo(name = "profesi")

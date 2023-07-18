@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragment.RegisterFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="register"
+            type="com.mariana.adv160420017uts.model.User" />
+        <variable
+            name="registerListener"
+            type="com.mariana.adv160420017uts.view.ButtonRegisterClickListener" />
+        <variable
+            name="radioListener"
+            type="com.mariana.adv160420017uts.view.RadioClickGender" />
+    </data>
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +47,8 @@
                 android:id="@+id/txtUsernameRegist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:hint="Username"
+                android:text="@={register.username}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -62,13 +72,19 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male" />
+                android:text="Male"
+                android:tag="1"
+                android:checked="@{register.gender==1?true:false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view,1,register)}"/>
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Female" />
+                android:text="Female"
+                android:tag="2"
+                android:checked="@{register.gender==2?true:false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view,2,register)}"/>
 
         </RadioGroup>
 
@@ -88,7 +104,8 @@
                 android:id="@+id/txtProfesiRegist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profesi" />
+                android:hint="Profesi"
+                android:text="@={register.profession}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +124,8 @@
                 android:id="@+id/txtTelpRegist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Telephone" />
+                android:hint="Telephone"
+                android:text="@={register.numberTelp}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -118,10 +136,11 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
             android:text="Submit"
+            android:onClick="@{registerListener::onRegisterClickListener}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</layout>

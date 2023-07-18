@@ -1,6 +1,8 @@
 package com.mariana.adv160420017uts.view
 
 import android.view.View
+import com.mariana.adv160420017uts.model.Donation
+import com.mariana.adv160420017uts.model.User
 
 interface ButtonMyDetailDonateClickListener {
     fun onDetailMyDonateClickListener(v: View)
@@ -18,6 +20,10 @@ interface ButtonRegisterClickListener {
     fun onRegisterClickListener(v: View)
 }
 
+interface RadioClickGender {
+    fun onRadioClickGender(v: View, gender: Int, obj: User)
+}
+
 interface ButtonDonateClickListener {
     fun onDonateClickListener(v: View)
 }
@@ -32,4 +38,12 @@ interface ButtonShareClickListener {
 
 interface ButtonEditProfile {
     fun onEditProfile(v: View)
+}
+
+interface ButtonSaveEditProfile {
+    fun onSaveEditProfile(v: View)
+}
+
+interface ButtonUserDonateClickListener {
+    fun onUserDonateClickListener(v: View)
 }
