@@ -28,9 +28,6 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     private var job = Job()
 
-//    val TAG = "volleyTag"
-//    private var queue: RequestQueue? = null
-
     fun login(username: String, password: String) {
         launch{
             val db = donateDB(getApplication())
@@ -70,6 +67,13 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         launch {
             val db = donateDB(getApplication())
             db.userDao().register(user)
+        }
+    }
+
+    fun profile(username: String, telp: String, saldo: String){
+        launch {
+            val db = donateDB(getApplication())
+            profileLD.value = db.userDao().profile(username, telp, saldo)
         }
     }
 

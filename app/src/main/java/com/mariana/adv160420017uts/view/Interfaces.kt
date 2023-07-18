@@ -29,3 +29,7 @@ interface ButtonDetailDonateClickListener {
 interface ButtonShareClickListener {
     fun onShareClickListener(v: View)
 }
+
+interface ButtonEditProfile {
+    fun onEditProfile(v: View)
+}
