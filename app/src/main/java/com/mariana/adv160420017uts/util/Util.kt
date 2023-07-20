@@ -22,21 +22,6 @@ fun PhotoUrl(view: ImageView, url: String?, progressBar: ProgressBar) {
     view.loadImage(url, progressBar)
 }
 
-fun buildDb(context: Context):DonationDatabase {
-    val db = databaseBuilder(context,
-        DonationDatabase::class.java, DB_NAME)
-        .addMigrations(MIGRATION_1_2)
-        .build()
-    return db
-}
-
-val MIGRATION_1_2 = object :Migration(1, 2){
-    override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL(
-            "ALTER TABLE donation ADD COLUMN "
-        )
-    }
-}
 fun ImageView.loadImage(url: String?, progressBar: ProgressBar){
     Picasso.get()
         .load(url)
@@ -55,9 +40,8 @@ fun ImageView.loadImage(url: String?, progressBar: ProgressBar){
 }
 
 fun donateDB(context: Context): DonationDatabase {
-    val db = Room.databaseBuilder(context, DonationDatabase::class.java, DB_NAME).addMigrations(
-        MIGRATION_1_2
-    ).build()
-
-    return db
+    return databaseBuilder(
+        context,
+        DonationDatabase::class.java,
+        DB_NAME).build()
 }

@@ -76,7 +76,7 @@
         tools:layout="@layout/fragment_donate_detail" >
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
         <action
             android:id="@+id/actionDetailDonate"
             app:destination="@id/itemDonate" />
@@ -94,7 +94,7 @@
             android:id="@+id/actionLoginHomeFragment"
             app:destination="@id/itemHome" />
         <action
-            android:id="@+id/actionRegisterFragmeng"
+            android:id="@+id/actionRegisterFragment"
             app:destination="@id/registerFragment" />
     </fragment>
     <fragment

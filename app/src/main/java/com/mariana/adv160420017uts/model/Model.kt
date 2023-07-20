@@ -60,7 +60,7 @@ data class User(
     @ColumnInfo(name = "telp")
     var numberTelp: String,
     @ColumnInfo(name = "saldo")
-    var saldo: String,
+    var saldo: Int,
     @ColumnInfo(name = "photo_url")
     var photoUrl: String
 )

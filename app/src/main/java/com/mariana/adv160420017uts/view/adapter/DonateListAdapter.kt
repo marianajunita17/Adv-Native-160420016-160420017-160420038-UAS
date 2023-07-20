@@ -45,8 +45,8 @@ class DonateListAdapter(val myDonationList:ArrayList<MyDonation>)
     override fun getItemCount(): Int = myDonationList.size
 
     override fun onButtonMyDonate(v: View) {
-        val id = v.tag.toString()
-        val action = DonateFragmentDirections.actionDonateDetail(id)
+        val id = v.tag
+        val action = DonateFragmentDirections.actionDonateDetail(id.toString().toInt())
         Navigation.findNavController(v).navigate(action)
     }
 }

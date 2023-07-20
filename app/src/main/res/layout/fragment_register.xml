@@ -74,8 +74,8 @@
                 android:layout_height="wrap_content"
                 android:text="Male"
                 android:tag="1"
-                android:checked="@{register.gender==1?true:false}"
-                android:onClick="@{(view)->radioListener.onRadioClickGender(view,1,register)}"/>
+                android:checked="@{register.gender == 1 ? true : false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 1, register)}"/>
 
             <RadioButton
                 android:id="@+id/radioButton2"
@@ -83,8 +83,8 @@
                 android:layout_height="wrap_content"
                 android:text="Female"
                 android:tag="2"
-                android:checked="@{register.gender==2?true:false}"
-                android:onClick="@{(view)->radioListener.onRadioClickGender(view,2,register)}"/>
+                android:checked="@{register.gender == 2 ? true :  false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 2, register)}"/>
 
         </RadioGroup>
 

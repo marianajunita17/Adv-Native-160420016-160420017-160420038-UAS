@@ -42,7 +42,6 @@ class ProfileFragment : Fragment(), ButtonEditProfile {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val username = ""
         Toast.makeText(view.context, username, Toast.LENGTH_SHORT).show()
-        viewModel.profile(username)
         dataBinding.editProfileListener = this
         observeViewModel()
     }

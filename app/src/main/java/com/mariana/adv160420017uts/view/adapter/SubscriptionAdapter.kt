@@ -1,17 +1,12 @@
 package com.mariana.adv160420017uts.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.SubscriptionListItemBinding
 import com.mariana.adv160420017uts.model.Subscription
-import com.mariana.adv160420017uts.util.loadImage
-import kotlinx.android.synthetic.main.subscription_list_item.view.*
 
 class SubscriptionAdapter(val subscriptionList:ArrayList<Subscription>)
     :RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {

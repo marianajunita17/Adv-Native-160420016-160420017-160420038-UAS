@@ -1,20 +1,13 @@
 package com.mariana.adv160420017uts.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.DonationDatabase
 import com.mariana.adv160420017uts.model.MyDonation
-import com.mariana.adv160420017uts.util.buildDb
+import com.mariana.adv160420017uts.util.donateDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,7 +43,7 @@ class HomeListViewModel(application: Application)
 
     fun insertDonation(myDonation: MyDonation) {
         launch {
-            val db = buildDb(getApplication())
+            val db = donateDB(getApplication())
             db.myDonationDao().donate(myDonation)
         }
     }

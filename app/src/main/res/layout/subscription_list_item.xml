@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
@@ -25,18 +25,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/imgSubscription"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:imageUrl="@{subscription.photoUrl}"
-                    android:progressBar="progressSubsItem"
+                    android:src="@{subscription.photoUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -49,6 +48,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="24dp"
                     android:text="@{subscription.title}"
+                    tools:text="Judul Subs"
                     app:fontFamily="sans-serif-medium"
                     app:layout_constraintStart_toEndOf="@+id/imgSubscription"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,10 +58,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
                     android:text="@{subscription.dana}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imgSubscription" />
+                    app:layout_constraintStart_toEndOf="@+id/imgSubscription"
+                    app:layout_constraintTop_toBottomOf="@+id/txtJudulSubs"
+                    tools:text="Uang Subs" />
 
                 <ProgressBar
                     android:id="@+id/progressSubsItem"

@@ -1,16 +1,17 @@
 package com.mariana.adv160420017uts.view.fragment
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentLoginBinding
 import com.mariana.adv160420017uts.model.User
@@ -26,33 +27,47 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.let {
+            it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.GONE
+            it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            it.findViewById<Toolbar>(androidx.appcompat.R.id.action_bar).navigationIcon = null
+        }
         // Inflate the layout for this fragment
-        dataBinding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater, R.layout.fragment_login, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+
         dataBinding.login = this
         dataBinding.register = this
-        dataBinding.user = User("", "", "", "", "", "", "", "")
+        dataBinding.user = User("", "", 1, "", "", "", 0, "")
+
+        observeViewModel(view)
+    }
+
+    private fun observeViewModel(view: View) {
+        viewModel.profileLD.observe(viewLifecycleOwner) {
+            if (it != null) {
+                viewModel.sessionLogin(it.username, it.saldo)
+                val action = LoginFragmentDirections.actionLoginHomeFragment()
+                Navigation.findNavController(view).navigate(action)
+            } else {
+                Toast.makeText(view.context, "Login tidak berhasil", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onLoginClickListener(v: View) {
-        viewModel.login(dataBinding?.user!!.username, dataBinding?.user!!.password)
-
-        if(viewModel.result == "Gagal") {
-            val builder = AlertDialog.Builder(v.context)
-            builder.setTitle("Login Gagal")
-        } else {
-            Toast.makeText(v.context, "Login Berhasil!", Toast.LENGTH_LONG).show()
-            Navigation.findNavController(v).navigate(LoginFragmentDirections.actionLoginHomeFragment())
+        dataBinding.user?.let {
+            viewModel.login(it.username, it.password)
         }
     }
 
     override fun onRegisterClickListener(v: View) {
-        Navigation.findNavController(v).navigate(RegisterFragmentDirections.actionRegisterHomeFragment())
+        Navigation.findNavController(v).navigate(LoginFragmentDirections.actionRegisterFragment())
     }
 
 }

@@ -43,7 +43,6 @@ class EditProfileFragment : Fragment(), ButtonSaveEditProfile {
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val username = ""
-        viewModel.profile(username)
         dataBinding.saveEditProfileListener = this
 
         observeViewModel()
