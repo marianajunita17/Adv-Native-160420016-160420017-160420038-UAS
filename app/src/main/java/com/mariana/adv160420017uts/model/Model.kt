@@ -1,11 +1,11 @@
 package com.mariana.adv160420017uts.model
 
-import android.view.View
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Junction
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
-import com.mariana.adv160420017uts.view.ButtonDonateClickListener
+import androidx.room.Relation
 
 @Entity
 data class Donation(
@@ -29,7 +29,7 @@ data class Donation(
 }
 
 @Entity
-data class MyDonation(
+data class DonationHistory(
     @ColumnInfo(name = "donation_id")
     var donationId: String,
     @ColumnInfo(name = "total")
@@ -39,7 +39,7 @@ data class MyDonation(
     @ColumnInfo(name = "user_username")
     var userUsername: String
 ) {
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id:Int = 0
 }
 

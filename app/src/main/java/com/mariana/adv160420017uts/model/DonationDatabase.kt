@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mariana.adv160420017uts.util.Util
+import com.mariana.adv160420017uts.util.buildDB
 
-@Database(entities = arrayOf(Donation::class, User::class, MyDonation::class, Subscription::class), version = 1)
+@Database(entities = arrayOf(Donation::class, User::class, DonationHistory::class, Subscription::class), version = 2)
 abstract class DonationDatabase :RoomDatabase(){
     abstract fun donationDao(): DonationDao
-    abstract fun myDonationDao(): MyDonationDao
+    abstract fun donationHistoryDao(): DonationHistoryDao
     abstract fun userDao(): UserDao
 
     companion object{
@@ -17,10 +18,7 @@ abstract class DonationDatabase :RoomDatabase(){
         private val LOCK = Any()
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                DonationDatabase::class.java, Util.DB_NAME)
-                .build()
+            buildDB(context)
 
         operator fun invoke(context: Context) {
             if(instance != null) {

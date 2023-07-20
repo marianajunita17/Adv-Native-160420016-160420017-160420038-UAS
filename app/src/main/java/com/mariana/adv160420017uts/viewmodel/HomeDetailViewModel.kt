@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.mariana.adv160420017uts.model.Donation
-import com.mariana.adv160420017uts.model.MyDonation
-import com.mariana.adv160420017uts.util.donateDB
+import com.mariana.adv160420017uts.model.DonationHistory
+import com.mariana.adv160420017uts.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,17 +20,19 @@ class HomeDetailViewModel(application: Application): AndroidViewModel(applicatio
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun addDonate(myDonation: MyDonation){
+    fun addDonate(donationHistory: DonationHistory){
         launch {
-            val db = donateDB(getApplication())
-            db.myDonationDao().donate(myDonation)
+            buildDB(getApplication()).apply {
+                this.donationHistoryDao().donate(donationHistory)
+            }
         }
     }
 
     fun fetch(id: Int) {
         launch {
-            val db = donateDB(getApplication())
-            donationLD.value = db.donationDao().detailDonation(id)
+            buildDB(getApplication()).apply {
+                donationLD.postValue(this.donationDao().detailDonation(id))
+            }
         }
 //        queue = Volley.newRequestQueue(getApplication())
 //        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"

@@ -76,18 +76,21 @@
             android:text="Terdanai"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDonatur" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDonatur"
+            tools:text="Terdanai"/>
 
         <TextView
             android:id="@+id/txtTerdanai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
             android:text="@{homeDetailDonation.terkumpul}"
             android:textSize="16sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:text="15000"/>
 
         <TextView
             android:id="@+id/textView8"
@@ -111,38 +114,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Informasi Penggalang Dana"
-            android:textSize="18sp"
-            app:fontFamily="sans-serif-medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTerdanai" />
-
-        <TextView
-            android:id="@+id/txtPenggalang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:text="@{homeDetailDonation.donatur}"
-            android:textSize="16sp"
-            app:fontFamily="sans-serif"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-        <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
             android:text="Identitas Terverifikasi"
             app:fontFamily="sans-serif-light"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPenggalang" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTerdanai" />
 
         <Button
             android:id="@+id/btnBagikan"

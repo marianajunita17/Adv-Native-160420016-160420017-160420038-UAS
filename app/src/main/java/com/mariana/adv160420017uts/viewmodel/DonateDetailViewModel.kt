@@ -1,18 +1,11 @@
 package com.mariana.adv160420017uts.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.mariana.adv160420017uts.model.Donation
-import com.mariana.adv160420017uts.model.MyDonation
-import com.mariana.adv160420017uts.util.donateDB
+import com.mariana.adv160420017uts.model.DonationHistory
+import com.mariana.adv160420017uts.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -27,19 +20,22 @@ class DonateDetailViewModel(application: Application):
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-    val myDonationLD = MutableLiveData<MyDonation>()
+    val donationHistoryLD = MutableLiveData<DonationHistory>()
+    val donationLD = MutableLiveData<Donation>()
 
     fun fetch(id: Int) {
         launch {
-            val db = donateDB(getApplication())
-            myDonationLD.value = db.myDonationDao().detailMyDonation(id)
+            buildDB(getApplication()).apply {
+                donationHistoryLD.postValue(this.donationHistoryDao().detailHistoryDonation(id))
+            }
         }
     }
 
     fun displayMyDonate(id: Int) {
         launch {
-            val db = donateDB(getApplication())
-            myDonationLD.value = db.myDonationDao().detailMyDonation(id)
+            buildDB(getApplication()).apply {
+                donationHistoryLD.postValue(this.donationHistoryDao().detailHistoryDonation(id))
+            }
         }
     }
 }

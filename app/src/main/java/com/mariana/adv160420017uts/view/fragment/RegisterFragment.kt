@@ -34,7 +34,7 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        dataBinding.user = User("", "", 1, "", "", "", 0, "")
+        dataBinding.user = User("", "", 1, "", 0, "")
         dataBinding.registerListener = this
 
         observeViewModel(view)

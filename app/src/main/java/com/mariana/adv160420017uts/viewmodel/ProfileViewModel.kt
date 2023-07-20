@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.mariana.adv160420017uts.model.User
 import com.mariana.adv160420017uts.util.SharedPreferencesProvider
-import com.mariana.adv160420017uts.util.donateDB
+import com.mariana.adv160420017uts.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -23,7 +23,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     fun login(username: String, password: String, onSuccess: (msg: String) -> Unit) {
         launch{
-            donateDB(getApplication()).apply {
+            buildDB(getApplication()).apply {
                 if ((username.isNotBlank() && password.isNotBlank())) {
                     val user = this.userDao().login(username, password)
                     user?.let {
@@ -51,7 +51,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     fun register(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
-            donateDB(getApplication()).apply {
+            buildDB(getApplication()).apply {
                 val checkUser = this.userDao().login(user.username, user.password)
                 checkUser?.let {
                     if (it.username == user.username) {
@@ -74,8 +74,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     fun editProfile(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
-            donateDB(getApplication()).apply {
-                val affected = this.userDao().editProfile(user.password, user.dob, user.profession, user.numberTelp, user.username)
+            buildDB(getApplication()).apply {
+                val affected = this.userDao().editProfile(user.password, user.numberTelp, user.username)
                 if (affected != 0) {
                     profileLD.postValue(user)
                     sessionLogin(user.username, Gson().toJson(user))

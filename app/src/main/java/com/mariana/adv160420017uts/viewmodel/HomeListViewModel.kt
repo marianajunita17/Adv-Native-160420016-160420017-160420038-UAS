@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.mariana.adv160420017uts.model.Donation
-import com.mariana.adv160420017uts.model.MyDonation
-import com.mariana.adv160420017uts.util.donateDB
+import com.mariana.adv160420017uts.model.DonationHistory
+import com.mariana.adv160420017uts.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -31,17 +31,18 @@ class HomeListViewModel(application: Application)
         loadingLD.value = true
 
         launch {
-            donateDB(getApplication()).apply {
+            buildDB(getApplication()).apply {
                 donationsLD.postValue(this.donationDao().selectAllDonation())
             }
+
             loadingLD.postValue(false)
         }
     }
 
-    fun insertDonation(myDonation: MyDonation) {
+    fun insertDonation(donationHistory: DonationHistory) {
         launch {
-            donateDB(getApplication()).apply {
-                this.myDonationDao().donate(myDonation)
+            buildDB(getApplication()).apply {
+                this.donationHistoryDao().donate(donationHistory)
             }
         }
     }

@@ -10,8 +10,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mariana.adv160420017uts.model.Donation
-import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.model.Subscription
 
 class SubscriptionViewModel(application: Application): AndroidViewModel(application) {

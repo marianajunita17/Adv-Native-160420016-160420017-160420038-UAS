@@ -49,7 +49,7 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
 
         dataBinding.login = this
         dataBinding.register = this
-        dataBinding.user = User("", "", 1, "", "", "", 0, "")
+        dataBinding.user = User("", "", 1, "",  0, "")
 
         observeViewModel(view)
     }

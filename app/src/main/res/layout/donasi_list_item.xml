@@ -5,8 +5,12 @@
 
     <data>
         <variable
-            name="detailDonate"
-            type="com.mariana.adv160420017uts.model.MyDonation" />
+            name="donation"
+            type="com.mariana.adv160420017uts.model.Donation" />
+        <variable
+            name="donationDetail"
+            type="com.mariana.adv160420017uts.model.DonationHistory" />
+
         <variable
             name="detailListener"
             type="com.mariana.adv160420017uts.view.ButtonMyDonateClickListener" />
@@ -36,7 +40,7 @@
                     android:id="@+id/imgViewDonasiSaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@{detailDonate.photoUrl}"
+                    android:src="@{donation.photoUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{detailDonate.judul}"
+                    android:text="@{donation.title}"
                     app:fontFamily="sans-serif-medium"
                     app:layout_constraintStart_toEndOf="@+id/imgViewDonasiSaya"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{detailDonate.tanggalDonasi}"
+                    android:text="@{donationDetail.tanggalDonasi}"
                     app:layout_constraintStart_toEndOf="@+id/imgViewDonasiSaya"
                     app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasi" />
 
@@ -69,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="More"
-                    android:tag="@{detailDonate.id}"
+                    android:tag="@{donationDetail.id}"
                     android:onClick="@{detailListener::onButtonMyDonate}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

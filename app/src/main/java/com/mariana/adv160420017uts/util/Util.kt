@@ -43,15 +43,17 @@ fun ImageView.loadImage(url: String?, progressBar: ProgressBar){
         })
 }
 
-fun donateDB(context: Context): DonationDatabase {
+fun buildDB(context: Context): DonationDatabase {
     return databaseBuilder(
         context,
         DonationDatabase::class.java,
-        DB_NAME).build()
+        DB_NAME)
+        .fallbackToDestructiveMigration()
+        .build()
 }
 
 fun String.toUser(): User {
     if (this.isBlank())
-        return User("", "", 1, "", "", "", 0, "")
+        return User("", "", 1, "", 0, "")
     return Gson().fromJson(this, User::class.java)
 }

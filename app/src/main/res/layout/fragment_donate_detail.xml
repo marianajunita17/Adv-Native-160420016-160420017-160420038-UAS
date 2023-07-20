@@ -5,12 +5,14 @@
 
     <data>
         <variable
-            name="donateDetail"
-            type="com.mariana.adv160420017uts.model.MyDonation" />
+            name="donation"
+            type="com.mariana.adv160420017uts.model.Donation" />
+        <variable
+            name="donationDetail"
+            type="com.mariana.adv160420017uts.model.DonationHistory" />
         <variable
             name="donationListener"
             type="com.mariana.adv160420017uts.view.ButtonMyDetailDonateClickListener" />
-
     </data>
 
     <!-- TODO: Update blank fragment layout -->
@@ -23,8 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:imageUrl="@{donateDetail.photoUrl}"
-            android:progressBar="@{progressDonateDetail}"
+            android:src="@{donation.photoUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="@{donateDetail.judul}"
+            android:text="@{donation.title}"
             android:textSize="24sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,19 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="@{donateDetail.tanggalDonasi}"
+            android:text="@{donationDetail.tanggalDonasi}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasiDetail" />
-
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="@{donateDetail.status}"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasiDetail" />
 
         <TextView
@@ -78,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="@{donateDetail.totalDonasi}"
+            android:text="@{donationDetail.totalDonasi}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
