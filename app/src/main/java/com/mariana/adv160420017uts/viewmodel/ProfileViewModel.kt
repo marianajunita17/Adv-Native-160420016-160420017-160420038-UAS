@@ -75,7 +75,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     fun editProfile(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
-                val affected = this.userDao().editProfile(user.dob, user.profession, user.numberTelp, user.username)
+                val affected = this.userDao().editProfile(user.password, user.dob, user.profession, user.numberTelp, user.username)
                 if (affected != 0) {
                     profileLD.postValue(user)
                     sessionLogin(user.username, Gson().toJson(user))

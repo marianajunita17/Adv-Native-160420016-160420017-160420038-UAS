@@ -42,11 +42,11 @@
             app:layout_constraintTop_toBottomOf="@+id/imgEditProfile">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtNama"
+                android:id="@+id/txtPasswordEditProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={user.username}"
-                android:hint="Username"/>
+                android:text="@={user.password}"
+                android:hint="Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

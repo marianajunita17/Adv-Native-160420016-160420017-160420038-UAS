@@ -10,6 +10,6 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE username= :username AND password= :password")
     suspend fun login(username: String, password: String): User?
 
-    @Query("UPDATE user SET dob=:dob, profesi=:profesi, telp=:telp WHERE username=:username")
-    suspend fun editProfile(dob: String, profesi: String, telp: String, username: String): Int
+    @Query("UPDATE user SET password=:password, dob=:dob, profesi=:profesi, telp=:telp WHERE username=:username")
+    suspend fun editProfile(password: String, dob: String, profesi: String, telp: String, username: String): Int
 }
