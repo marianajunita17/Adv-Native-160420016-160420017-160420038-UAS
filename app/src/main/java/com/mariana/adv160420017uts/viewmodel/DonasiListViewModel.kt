@@ -18,6 +18,8 @@ class DonasiListViewModel(application: Application):
     val myDonationsLD = MutableLiveData<List<MyDonation>>()
     val myDonationErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
+    var isRefreshing = false
+
     private var job = Job()
 
     override val coroutineContext: CoroutineContext
@@ -35,27 +37,5 @@ class DonasiListViewModel(application: Application):
 
             myDonationsLD.postValue(db.myDonationDao().selectAllMyDonation())
         }
-//
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donasiSaya.json"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<MyDonation>>() { }.type
-//                val result = Gson().fromJson<ArrayList<MyDonation>>(it, sType)
-//
-//                myDonationsLD.value = result
-//                loadingLD.value = false
-//
-//                Log.d("involleymydonation", result.toString())
-//            },
-//            {
-//                Log.d("involleymydonation", it.toString())
-//                loadingLD.value = false
-//            })
-//
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
     }
 }

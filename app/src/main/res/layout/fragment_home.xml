@@ -13,7 +13,7 @@
             type="com.mariana.adv160420017uts.view.adapter.HomeListAdapter" />
         <variable
             name="homeInterface"
-            type="com.mariana.adv160420017uts.view.HomePageInterface" />
+            type="com.mariana.adv160420017uts.view.SwipeRefreshInterface" />
     </data>
 
     <FrameLayout

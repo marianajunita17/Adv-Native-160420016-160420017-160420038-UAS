@@ -1,57 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragment.DonateFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayoutDonasi"
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="donasiViewModel"
+            type="com.mariana.adv160420017uts.viewmodel.DonasiListViewModel" />
+        <variable
+            name="donateAdapter"
+            type="com.mariana.adv160420017uts.view.adapter.DonateListAdapter" />
+        <variable
+            name="donasiInterface"
+            type="com.mariana.adv160420017uts.view.SwipeRefreshInterface" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingClass">
+        tools:context=".view.fragment.DonateFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayoutDonasi"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{ () ->  donasiInterface.onRefresh()}"
+            app:refreshing="@{donasiViewModel.isRefreshing}"
+            tools:ignore="MissingClass">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Riwayat Donasi"
-                android:textSize="24sp"
-                app:fontFamily="sans-serif-medium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recViewDonasi"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="60dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Riwayat Donasi"
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/progressBarDonasi"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recViewDonasi"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="60dp"
+                    android:adapter="@{donateAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <ProgressBar
+                    android:id="@+id/progressBarDonasi"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{donasiViewModel.loadingLD ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-</FrameLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </FrameLayout>
+</layout>

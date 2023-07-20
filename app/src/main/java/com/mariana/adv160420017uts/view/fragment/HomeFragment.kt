@@ -12,11 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentHomeBinding
-import com.mariana.adv160420017uts.view.HomePageInterface
+import com.mariana.adv160420017uts.view.SwipeRefreshInterface
 import com.mariana.adv160420017uts.view.adapter.HomeListAdapter
 import com.mariana.adv160420017uts.viewmodel.HomeListViewModel
 
-class HomeFragment : Fragment(), HomePageInterface {
+class HomeFragment : Fragment(), SwipeRefreshInterface {
     private lateinit var viewModel: HomeListViewModel
     private lateinit var dataBinding: FragmentHomeBinding
     private val homeListAdapter = HomeListAdapter(arrayListOf())

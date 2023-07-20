@@ -48,6 +48,6 @@ interface ButtonUserDonateClickListener {
     fun onUserDonateClickListener(v: View)
 }
 
-interface HomePageInterface {
+interface SwipeRefreshInterface {
     fun onRefresh()
 }
