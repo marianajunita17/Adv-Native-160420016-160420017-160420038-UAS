@@ -52,15 +52,18 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         launch{
             buildDB(getApplication()).apply {
                 if (username.isNotBlank() && password.isNotBlank()) {
-                    val user = this.userDao().login(username, password)
-                    user?.let {
-                        profileLD.postValue(it)
-                        sessionLogin(user.username, Gson().toJson(user))
-                        onSuccess("Login berhasil")
+                    if (password.length > 8) {
+                        val user = this.userDao().login(username, password)
+                        user?.let {
+                            profileLD.postValue(it)
+                            sessionLogin(user.username, Gson().toJson(user))
+                            onSuccess("Login berhasil")
+                        }
+                        if (user == null)
+                            onSuccess("Username atau password salah")
+                    } else {
+                        onSuccess("Password harus lebih dari 8 karakter")
                     }
-
-                    if (user == null)
-                        onSuccess("Username atau password salah")
                 }
             }
         }
@@ -87,14 +90,22 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
                         }
                     }
 
-                    if (checkUser == null) {
-                        val id = this.userDao().register(user)
-                        if (id != 0.toLong()) {
-                            profileLD.postValue(user)
-                            sessionLogin(user.username, Gson().toJson(user))
-                            onSuccess("Register success")
-                        } else
-                            onSuccess("Register failed")
+                    if (user.password.length > 8){
+                        if (user.numberTelp.length < 10 || user.numberTelp.length > 12){
+                            onSuccess("Nomor telepon harus 10-12 digit")
+                        } else {
+                            if (checkUser == null) {
+                                val id = this.userDao().register(user)
+                                if (id != 0.toLong()) {
+                                    profileLD.postValue(user)
+                                    sessionLogin(user.username, Gson().toJson(user))
+                                    onSuccess("Register success")
+                                } else
+                                    onSuccess("Register failed")
+                            }
+                        }
+                    } else {
+                        onSuccess("Password harus lebih dari 8 karakter")
                     }
                 } else {
                     onSuccess("Username atau password tidak boleh kosong")

@@ -56,15 +56,6 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
                 Toast.makeText(v.context, msg, Toast.LENGTH_SHORT).show()
             }
         }
-
-
-        if(txtPasswordRegist.length() < 8){
-            Toast.makeText(v.context, "Password harus lebih dari 8", Toast.LENGTH_SHORT).show()
-        }
-
-        if(txtTelpRegist.length() < 10 && txtTelpRegist.length() > 12){
-            Toast.makeText(v.context, "Nomor telepon harus 10 - 12 digit", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onRadioClickGender(v: View, gender: Int, user: User) {
