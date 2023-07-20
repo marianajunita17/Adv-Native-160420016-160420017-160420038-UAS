@@ -13,5 +13,4 @@ interface DonationDao {
     @Query("SELECT * FROM donation WHERE id= :id")
     fun detailDonation(id:Int): Donation
 
-
 }

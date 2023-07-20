@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentLoginBinding
 import com.mariana.adv160420017uts.model.User
+import com.mariana.adv160420017uts.util.addUserData
 import com.mariana.adv160420017uts.view.ButtonLoginClickListener
 import com.mariana.adv160420017uts.view.ButtonRegisterClickListener
 import com.mariana.adv160420017uts.viewmodel.ProfileViewModel
@@ -50,6 +51,8 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
         dataBinding.login = this
         dataBinding.register = this
         dataBinding.user = User("", "", 1, "",  0, "")
+
+//        viewModel.initDB()
 
         observeViewModel(view)
     }
