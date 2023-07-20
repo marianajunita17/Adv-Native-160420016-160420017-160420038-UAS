@@ -68,7 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:text="@={user.password}" />
+                android:text="@={user.password}"
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -125,7 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telephone"
-                android:text="@={user.numberTelp}"/>
+                android:text="@={user.numberTelp}"
+                android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
