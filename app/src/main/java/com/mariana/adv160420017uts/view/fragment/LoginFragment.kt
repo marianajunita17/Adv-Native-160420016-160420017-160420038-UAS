@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -28,6 +29,12 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
         savedInstanceState: Bundle?
     ): View? {
         activity?.let {
+            it.onBackPressedDispatcher.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.moveTaskToBack(true)
+                }
+            })
+
             it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.GONE
             it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }

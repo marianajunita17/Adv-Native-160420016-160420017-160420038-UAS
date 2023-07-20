@@ -43,6 +43,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     fun getUserFromSharedPref() = sharedPreferences.getUser()
 
+    fun logout() = sharedPreferences.logout()
+
     fun register(user: User, onSuccess: (success: Boolean) -> Unit) {
         launch {
             donateDB(getApplication()).apply {

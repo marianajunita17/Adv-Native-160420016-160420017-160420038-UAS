@@ -9,15 +9,18 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentHomeBinding
 import com.mariana.adv160420017uts.view.SwipeRefreshInterface
 import com.mariana.adv160420017uts.view.adapter.HomeListAdapter
 import com.mariana.adv160420017uts.viewmodel.HomeListViewModel
+import com.mariana.adv160420017uts.viewmodel.ProfileViewModel
 
 class HomeFragment : Fragment(), SwipeRefreshInterface {
     private lateinit var viewModel: HomeListViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var dataBinding: FragmentHomeBinding
     private val homeListAdapter = HomeListAdapter(arrayListOf())
 
@@ -44,12 +47,19 @@ class HomeFragment : Fragment(), SwipeRefreshInterface {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(HomeListViewModel::class.java)
-        viewModel.refresh()
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        dataBinding.homeAdapter = homeListAdapter
-        dataBinding.homeInterface = this
+        if (!profileViewModel.isLogin()) {
+            val action = HomeFragmentDirections.actionHomeLogin()
+            Navigation.findNavController(view).navigate(action)
+        } else {
+            viewModel.refresh()
 
-        observeViewModel()
+            dataBinding.homeAdapter = homeListAdapter
+            dataBinding.homeInterface = this
+
+            observeViewModel()
+        }
     }
 
     override fun onRefresh() {

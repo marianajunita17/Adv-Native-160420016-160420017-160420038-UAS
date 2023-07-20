@@ -51,3 +51,7 @@ interface ButtonUserDonateClickListener {
 interface SwipeRefreshInterface {
     fun onRefresh()
 }
+
+interface ButtonClickInterface {
+    fun logout(v: View)
+}

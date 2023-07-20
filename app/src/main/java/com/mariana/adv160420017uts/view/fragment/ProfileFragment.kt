@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentProfileBinding
+import com.mariana.adv160420017uts.view.ButtonClickInterface
 import com.mariana.adv160420017uts.view.ButtonEditProfile
 import com.mariana.adv160420017uts.viewmodel.ProfileViewModel
 
-class ProfileFragment : Fragment(), ButtonEditProfile {
+class ProfileFragment : Fragment(), ButtonEditProfile, ButtonClickInterface {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var dataBinding: FragmentProfileBinding
 
@@ -42,10 +43,17 @@ class ProfileFragment : Fragment(), ButtonEditProfile {
         observeViewModel()
 
         dataBinding.editProfileListener = this
+        dataBinding.logoutListener = this
     }
 
     override fun onEditProfile(v: View) {
         val action = ProfileFragmentDirections.actionProfileEdit()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun logout(v: View) {
+        viewModel.logout()
+        val action = ProfileFragmentDirections.actionProfileLogin()
         Navigation.findNavController(v).navigate(action)
     }
 }

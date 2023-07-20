@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/donation_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/itemHome">
 
     <fragment
         android:id="@+id/itemHome"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionHomeDetail"
             app:destination="@id/homeDetailFragment" />
+        <action
+            android:id="@+id/actionHomeLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
@@ -24,6 +27,11 @@
             app:destination="@id/profileEditFragment"
             app:popUpTo="@id/itemProfile"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionProfileLogin"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/itemDonate"
