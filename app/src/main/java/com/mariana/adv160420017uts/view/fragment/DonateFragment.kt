@@ -12,10 +12,12 @@ import com.mariana.adv160420017uts.databinding.FragmentDonateBinding
 import com.mariana.adv160420017uts.view.SwipeRefreshInterface
 import com.mariana.adv160420017uts.view.adapter.DonateListAdapter
 import com.mariana.adv160420017uts.viewmodel.DonasiListViewModel
+import com.mariana.adv160420017uts.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_donate.*
 
 class DonateFragment : Fragment(), SwipeRefreshInterface {
     private lateinit var viewModel: DonasiListViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var dataBinding: FragmentDonateBinding
     private val donateListAdapter = DonateListAdapter(arrayListOf(), arrayListOf())
 
@@ -31,8 +33,10 @@ class DonateFragment : Fragment(), SwipeRefreshInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(DonasiListViewModel::class.java)
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         dataBinding.donateAdapter = donateListAdapter
+        viewModel.refresh(profileViewModel.getUserFromSharedPref())
         dataBinding.donasiInterface = this
 
         observeViewModel()
@@ -46,7 +50,7 @@ class DonateFragment : Fragment(), SwipeRefreshInterface {
 
     override fun onRefresh() {
         viewModel.isRefreshing = true
-        viewModel.refresh()
+        viewModel.refresh(profileViewModel.getUserFromSharedPref())
         viewModel.isRefreshing = false
     }
 }

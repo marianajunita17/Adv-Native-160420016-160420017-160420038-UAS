@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentRegisterBinding
 import com.mariana.adv160420017uts.model.User
@@ -26,6 +28,10 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.let {
+            it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.GONE
+            it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
         return dataBinding.root
