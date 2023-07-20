@@ -6,6 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.mariana.adv160420017uts.model.User
 import com.mariana.adv160420017uts.util.SharedPreferencesProvider
+import com.mariana.adv160420017uts.util.addDonationData
+import com.mariana.adv160420017uts.util.addDonationHistoryData
+import com.mariana.adv160420017uts.util.addSubscriptionData
+import com.mariana.adv160420017uts.util.addUserData
 import com.mariana.adv160420017uts.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +24,29 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     private var job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
+
+    fun initDB() {
+        val donationList = addDonationData()
+        val userList = addUserData()
+        val historyList = addDonationHistoryData()
+        val subsList = addSubscriptionData()
+
+        launch {
+            buildDB(getApplication()).apply {
+                donationList.forEach {
+                    this.donationDao().addDonation(it)
+                }
+
+                userList.forEach {
+                    this.userDao().register(it)
+                }
+
+                historyList.forEach {
+                    this.donationHistoryDao().donate(it)
+                }
+            }
+        }
+    }
 
     fun login(username: String, password: String, onSuccess: (msg: String) -> Unit) {
         launch{

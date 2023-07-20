@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Donation(
@@ -22,6 +23,7 @@ data class Donation(
     @ColumnInfo(name = "hari")
     var hari: String,
     @ColumnInfo(name = "photo_url")
+    @SerializedName("photo_url")
     var photoUrl: String
 ) {
     @PrimaryKey(autoGenerate = true)
@@ -31,12 +33,16 @@ data class Donation(
 @Entity
 data class DonationHistory(
     @ColumnInfo(name = "donation_id")
+    @SerializedName("donation_id")
     var donationId: String,
     @ColumnInfo(name = "total")
+    @SerializedName("total")
     var totalDonasi: String,
     @ColumnInfo(name = "date")
+    @SerializedName("date")
     var tanggalDonasi: String,
     @ColumnInfo(name = "user_username")
+    @SerializedName("user_username")
     var userUsername: String
 ) {
     @PrimaryKey(autoGenerate = true)
@@ -52,10 +58,12 @@ data class User(
     @ColumnInfo(name = "gender")
     var gender: Int,
     @ColumnInfo(name = "telp")
+    @SerializedName("telp")
     var numberTelp: String,
     @ColumnInfo(name = "saldo")
     var saldo: Int,
     @ColumnInfo(name = "photo_url")
+    @SerializedName("photo_url")
     var photoUrl: String
 )
 
@@ -66,6 +74,7 @@ data class Subscription(
     @ColumnInfo(name = "dana")
     var dana: String,
     @ColumnInfo("photo_url")
+    @SerializedName("photo_url")
     var photoUrl: String
 ) {
     @PrimaryKey(autoGenerate = true)
