@@ -15,6 +15,7 @@ import com.mariana.adv160420017uts.model.User
 import com.mariana.adv160420017uts.view.ButtonRegisterClickListener
 import com.mariana.adv160420017uts.view.RadioClickGender
 import com.mariana.adv160420017uts.viewmodel.ProfileViewModel
+import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGender {
 
@@ -54,6 +55,15 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
             viewModel.register(it) { msg ->
                 Toast.makeText(v.context, msg, Toast.LENGTH_SHORT).show()
             }
+        }
+
+
+        if(txtPasswordRegist.length() < 8){
+            Toast.makeText(v.context, "Password harus lebih dari 8", Toast.LENGTH_SHORT).show()
+        }
+
+        if(txtTelpRegist.length() < 10 && txtTelpRegist.length() > 12){
+            Toast.makeText(v.context, "Nomor telepon harus 10 - 12 digit", Toast.LENGTH_SHORT).show()
         }
     }
 

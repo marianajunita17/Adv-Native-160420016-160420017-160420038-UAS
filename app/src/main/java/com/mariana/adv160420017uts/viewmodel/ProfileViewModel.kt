@@ -54,7 +54,9 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
             buildDB(getApplication()).apply {
                 val checkUser = this.userDao().login(user.username, user.password)
                 checkUser?.let {
-                    if (it.username == user.username) {
+                    if (it.username == null){
+                        onSuccess("Username tidak boleh kosong")
+                    } else if (it.username == user.username) {
                         onSuccess("Username already taken")
                     }
                 }
