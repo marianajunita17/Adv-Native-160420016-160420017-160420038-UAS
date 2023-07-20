@@ -22,7 +22,6 @@ class EditProfileFragment : Fragment(), ButtonSaveEditProfile {
 
     private fun observeViewModel(){
         viewModel.profileLD.observe(viewLifecycleOwner) {
-            Log.d("Edit Profile", "${it.username}")
             dataBinding.user = it
         }
     }
@@ -40,6 +39,7 @@ class EditProfileFragment : Fragment(), ButtonSaveEditProfile {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        dataBinding.user = viewModel.getUserFromSharedPref()
 
         observeViewModel()
         dataBinding.saveEditProfileListener = this

@@ -30,7 +30,6 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
         activity?.let {
             it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.GONE
             it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            it.findViewById<Toolbar>(androidx.appcompat.R.id.action_bar).navigationIcon = null
         }
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
@@ -51,12 +50,16 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
     private fun observeViewModel(view: View) {
         viewModel.profileLD.observe(viewLifecycleOwner) {
             if (it != null) {
-                viewModel.sessionLogin(it.username, it.saldo)
                 val action = LoginFragmentDirections.actionLoginHomeFragment()
                 Navigation.findNavController(view).navigate(action)
             } else {
                 Toast.makeText(view.context, "Login tidak berhasil", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        if (viewModel.isLogin()) {
+            val action = LoginFragmentDirections.actionLoginHomeFragment()
+            Navigation.findNavController(view).navigate(action)
         }
     }
 

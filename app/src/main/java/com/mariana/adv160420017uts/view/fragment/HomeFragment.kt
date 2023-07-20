@@ -34,7 +34,6 @@ class HomeFragment : Fragment(), HomePageInterface {
         activity?.let {
             it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.VISIBLE
             it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            it.findViewById<Toolbar>(androidx.appcompat.R.id.action_bar).setNavigationIcon(R.drawable.baseline_menu_24)
         }
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)

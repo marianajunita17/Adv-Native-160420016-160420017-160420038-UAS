@@ -42,7 +42,6 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
         dataBinding.user?.let {
             viewModel.register(it) {success ->
                 if (success) {
-                    viewModel.sessionLogin(it.username, it.saldo)
                     val action = RegisterFragmentDirections.actionRegisterHomeFragment()
                     Navigation.findNavController(v).navigate(action)
                 } else {

@@ -6,8 +6,10 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.room.Room.databaseBuilder
+import com.google.gson.Gson
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.model.DonationDatabase
+import com.mariana.adv160420017uts.model.User
 import com.mariana.adv160420017uts.util.Util.Companion.DB_NAME
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -46,4 +48,10 @@ fun donateDB(context: Context): DonationDatabase {
         context,
         DonationDatabase::class.java,
         DB_NAME).build()
+}
+
+fun String.toUser(): User {
+    if (this.isBlank())
+        return User("", "", 1, "", "", "", 0, "")
+    return Gson().fromJson(this, User::class.java)
 }

@@ -4,7 +4,9 @@ import android.R
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.mariana.adv160420017uts.model.User
+import com.mariana.adv160420017uts.util.SharedPreferencesProvider
 import com.mariana.adv160420017uts.util.donateDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +16,7 @@ import kotlin.coroutines.CoroutineContext
 
 class ProfileViewModel(application: Application): AndroidViewModel(application), CoroutineScope {
     val profileLD = MutableLiveData<User>()
+    private val sharedPreferences = SharedPreferencesProvider(application.applicationContext)
 
     private var job = Job()
     override val coroutineContext: CoroutineContext
@@ -23,18 +26,30 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         launch{
             donateDB(getApplication()).apply {
                 if ((username.isNotBlank() && password.isNotBlank())) {
-                    profileLD.value = this.userDao().login(username, password)
+                    val user = this.userDao().login(username, password)
+                    profileLD.postValue(user)
+
+                    sessionLogin(user.username, Gson().toJson(user));
                 }
             }
         }
     }
+
+    fun isLogin() = sharedPreferences.isLogin()
+
+    private fun sessionLogin(username: String, data: String) {
+        sharedPreferences.sessionLogin(username, data)
+    }
+
+    fun getUserFromSharedPref() = sharedPreferences.getUser()
 
     fun register(user: User, onSuccess: (success: Boolean) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
                 val id = this.userDao().register(user)
                 if (id != 0.toLong()) {
-                    profileLD.value = user
+                    profileLD.postValue(user)
+                    sessionLogin(user.username, Gson().toJson(user))
                     onSuccess(true)
                 } else
                     onSuccess(false)
@@ -47,16 +62,13 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
             donateDB(getApplication()).apply {
                 val affected = this.userDao().editProfile(user.dob, user.profession, user.numberTelp, user.username)
                 if (affected != 0) {
-                    profileLD.value = user
+                    profileLD.postValue(user)
+                    sessionLogin(user.username, Gson().toJson(user))
                     onSuccess(true)
                 } else {
                     onSuccess(false)
                 }
             }
         }
-    }
-
-    fun sessionLogin(username: String, saldo: Int) {
-
     }
 }

@@ -37,6 +37,7 @@ class ProfileFragment : Fragment(), ButtonEditProfile {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        dataBinding.user = viewModel.getUserFromSharedPref()
 
         observeViewModel()
 
