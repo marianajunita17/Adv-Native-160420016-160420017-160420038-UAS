@@ -72,7 +72,9 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
 
     override fun onLoginClickListener(v: View) {
         dataBinding.user?.let {
-            viewModel.login(it.username, it.password)
+            viewModel.login(it.username, it.password) { msg ->
+                Toast.makeText(v.context, msg, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

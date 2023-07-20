@@ -1,6 +1,5 @@
 package com.mariana.adv160420017uts.viewmodel
 
-import android.R
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -22,14 +21,19 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String, onSuccess: (msg: String) -> Unit) {
         launch{
             donateDB(getApplication()).apply {
                 if ((username.isNotBlank() && password.isNotBlank())) {
                     val user = this.userDao().login(username, password)
-                    profileLD.postValue(user)
+                    user?.let {
+                        profileLD.postValue(it)
+                        sessionLogin(user.username, Gson().toJson(user))
+                        onSuccess("Login berhasil")
+                    }
 
-                    sessionLogin(user.username, Gson().toJson(user));
+                    if (user == null)
+                        onSuccess("Username atau password salah")
                 }
             }
         }
@@ -45,30 +49,39 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
 
     fun logout() = sharedPreferences.logout()
 
-    fun register(user: User, onSuccess: (success: Boolean) -> Unit) {
+    fun register(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
-                val id = this.userDao().register(user)
-                if (id != 0.toLong()) {
-                    profileLD.postValue(user)
-                    sessionLogin(user.username, Gson().toJson(user))
-                    onSuccess(true)
-                } else
-                    onSuccess(false)
+                val checkUser = this.userDao().login(user.username, user.password)
+                checkUser?.let {
+                    if (it.username == user.username) {
+                        onSuccess("Username already taken")
+                    }
+                }
+
+                if (checkUser == null) {
+                    val id = this.userDao().register(user)
+                    if (id != 0.toLong()) {
+                        profileLD.postValue(user)
+                        sessionLogin(user.username, Gson().toJson(user))
+                        onSuccess("Register success")
+                    } else
+                        onSuccess("Register failed")
+                }
             }
         }
     }
 
-    fun editProfile(user: User, onSuccess: (success: Boolean) -> Unit) {
+    fun editProfile(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
                 val affected = this.userDao().editProfile(user.dob, user.profession, user.numberTelp, user.username)
                 if (affected != 0) {
                     profileLD.postValue(user)
                     sessionLogin(user.username, Gson().toJson(user))
-                    onSuccess(true)
+                    onSuccess("Update data berhasil")
                 } else {
-                    onSuccess(false)
+                    onSuccess("Update data gagal")
                 }
             }
         }

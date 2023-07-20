@@ -36,17 +36,23 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         dataBinding.user = User("", "", 1, "", "", "", 0, "")
         dataBinding.registerListener = this
+
+        observeViewModel(view)
+    }
+
+    private fun observeViewModel(view: View) {
+        viewModel.profileLD.observe(viewLifecycleOwner) {
+            if (it != null) {
+                val action = RegisterFragmentDirections.actionRegisterHomeFragment()
+                Navigation.findNavController(view).navigate(action)
+            }
+        }
     }
 
     override fun onRegisterClickListener(v: View) {
         dataBinding.user?.let {
-            viewModel.register(it) {success ->
-                if (success) {
-                    val action = RegisterFragmentDirections.actionRegisterHomeFragment()
-                    Navigation.findNavController(v).navigate(action)
-                } else {
-                    Toast.makeText(v.context, "Registrasi gagal", Toast.LENGTH_SHORT).show()
-                }
+            viewModel.register(it) { msg ->
+                Toast.makeText(v.context, msg, Toast.LENGTH_SHORT).show()
             }
         }
     }

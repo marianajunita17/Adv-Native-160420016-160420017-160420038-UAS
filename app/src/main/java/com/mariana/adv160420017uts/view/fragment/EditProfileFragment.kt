@@ -47,7 +47,7 @@ class EditProfileFragment : Fragment(), ButtonSaveEditProfile {
 
     override fun onSaveEditProfile(v: View, obj: User) {
         viewModel.editProfile(obj) {
-            if (it) {
+            if (it == "Update data berhasil") {
                 Toast.makeText(v.context, "Profile Berhasil Di Update!", Toast.LENGTH_SHORT).show()
 
                 val action = EditProfileFragmentDirections.actionEditProfile()
