@@ -17,8 +17,8 @@ data class Donation(
     var terkumpul: String,
     @ColumnInfo(name = "goals")
     var goals: String,
-    @ColumnInfo(name = "donatur")
-    var donatur: String,
+    @ColumnInfo(name = "deskripsi")
+    var deskripsi: String,
     @ColumnInfo(name = "hari")
     var hari: String,
     @ColumnInfo(name = "photo_url")
@@ -30,16 +30,14 @@ data class Donation(
 
 @Entity
 data class MyDonation(
-    @ColumnInfo(name = "status")
-    var status: String,
-    @ColumnInfo(name = "title")
-    var judul: String,
+    @ColumnInfo(name = "donation_id")
+    var donationId: String,
     @ColumnInfo(name = "total")
     var totalDonasi: String,
     @ColumnInfo(name = "date")
     var tanggalDonasi: String,
-    @ColumnInfo(name = "photo_url")
-    var photoUrl: String
+    @ColumnInfo(name = "user_username")
+    var userUsername: String
 ) {
     @PrimaryKey(autoGenerate = false)
     var id:Int = 0
@@ -53,10 +51,6 @@ data class User(
     var password: String,
     @ColumnInfo(name = "gender")
     var gender: Int,
-    @ColumnInfo(name = "dob")
-    var dob: String,
-    @ColumnInfo(name = "profesi")
-    var profession: String,
     @ColumnInfo(name = "telp")
     var numberTelp: String,
     @ColumnInfo(name = "saldo")
