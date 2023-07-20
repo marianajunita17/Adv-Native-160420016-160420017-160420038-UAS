@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentHomeBinding
 import com.mariana.adv160420017uts.view.HomePageInterface
@@ -28,6 +31,11 @@ class HomeFragment : Fragment(), HomePageInterface {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.let {
+            it.findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.VISIBLE
+            it.findViewById<DrawerLayout>(R.id.drawerLayout).setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            it.findViewById<Toolbar>(androidx.appcompat.R.id.action_bar).setNavigationIcon(R.drawable.baseline_menu_24)
+        }
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return dataBinding.root

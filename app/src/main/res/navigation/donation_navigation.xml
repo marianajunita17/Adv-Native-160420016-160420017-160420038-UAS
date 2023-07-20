@@ -24,9 +24,6 @@
             app:destination="@id/profileEditFragment"
             app:popUpTo="@id/itemProfile"
             app:popUpToInclusive="true" />
-        <argument
-            android:name="username"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/itemDonate"
@@ -65,9 +62,6 @@
         <action
             android:id="@+id/actionEditProfile"
             app:destination="@id/itemProfile" />
-        <argument
-            android:name="username"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/donateDetailFragment"

@@ -15,7 +15,7 @@ import java.lang.Exception
 
 class Util {
     companion object {
-        val DB_NAME = "donasidb"
+        const val DB_NAME = "donasidb"
     }
 }
 

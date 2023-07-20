@@ -42,12 +42,15 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         }
     }
 
-    fun editProfile(dob: String, profesi: String, telp: String, username: String) {
+    fun editProfile(user: User, onSuccess: (success: Boolean) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
-                val affected = this.userDao().editProfile(dob, profesi, telp, username)
+                val affected = this.userDao().editProfile(user.dob, user.profession, user.numberTelp, user.username)
                 if (affected != 0) {
-                    profileLD.value = this.userDao().profile(username)
+                    profileLD.value = user
+                    onSuccess(true)
+                } else {
+                    onSuccess(false)
                 }
             }
         }
