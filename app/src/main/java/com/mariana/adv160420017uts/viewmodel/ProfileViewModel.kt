@@ -51,7 +51,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     fun login(username: String, password: String, onSuccess: (msg: String) -> Unit) {
         launch{
             buildDB(getApplication()).apply {
-                if ((username.isNotBlank() && password.isNotBlank())) {
+                if (username.isNotBlank() && password.isNotBlank()) {
                     val user = this.userDao().login(username, password)
                     user?.let {
                         profileLD.postValue(it)
@@ -79,21 +79,25 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     fun register(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
             buildDB(getApplication()).apply {
-                val checkUser = this.userDao().login(user.username, user.password)
-                checkUser?.let {
-                    if (it.username == user.username) {
-                        onSuccess("Username already taken")
+                if (user.username.isNotBlank() && user.password.isNotBlank()) {
+                    val checkUser = this.userDao().login(user.username, user.password)
+                    checkUser?.let {
+                        if (it.username == user.username) {
+                            onSuccess("Username already taken")
+                        }
                     }
-                }
 
-                if (checkUser == null) {
-                    val id = this.userDao().register(user)
-                    if (id != 0.toLong()) {
-                        profileLD.postValue(user)
-                        sessionLogin(user.username, Gson().toJson(user))
-                        onSuccess("Register success")
-                    } else
-                        onSuccess("Register failed")
+                    if (checkUser == null) {
+                        val id = this.userDao().register(user)
+                        if (id != 0.toLong()) {
+                            profileLD.postValue(user)
+                            sessionLogin(user.username, Gson().toJson(user))
+                            onSuccess("Register success")
+                        } else
+                            onSuccess("Register failed")
+                    }
+                } else {
+                    onSuccess("Username atau password tidak boleh kosong")
                 }
             }
         }
