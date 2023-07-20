@@ -26,7 +26,6 @@ class DonateListAdapter(val donationHistoryList:ArrayList<DonationHistory>, val 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonasiListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-//        val view = inflater.inflate(R.layout.donasi_list_item, parent, false)
         val view = DataBindingUtil.inflate<DonasiListItemBinding>(inflater, R.layout.donasi_list_item, parent, false)
 
         return DonasiListViewHolder(view)

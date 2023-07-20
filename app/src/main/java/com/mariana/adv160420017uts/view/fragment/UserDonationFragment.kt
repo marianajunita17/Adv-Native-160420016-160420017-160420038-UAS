@@ -11,10 +11,6 @@ import com.mariana.adv160420017uts.view.ButtonUserDonateClickListener
 
 class UserDonationFragment : BottomSheetDialogFragment(), ButtonUserDonateClickListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

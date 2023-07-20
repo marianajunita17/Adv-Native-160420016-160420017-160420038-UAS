@@ -7,13 +7,12 @@
         <variable
             name="detailDonationListener"
             type="com.mariana.adv160420017uts.view.ButtonDetailDonateClickListener" />
-<!--        <variable-->
-<!--            name="shareDonationListener"-->
-<!--            type="com.mariana.adv160420017uts.view.ButtonShareClickListener" />-->
         <variable
             name="homeDetailDonation"
             type="com.mariana.adv160420017uts.model.Donation" />
-
+        <variable
+            name="progressBarHorizontal"
+            type="com.mariana.adv160420017uts.view.ProgressBarInterface" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,16 +33,18 @@
 
         <TextView
             android:id="@+id/txtJudul"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:text="@{homeDetailDonation.title}"
             android:textSize="24sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgDonation" />
+            app:layout_constraintTop_toBottomOf="@+id/imgDonation"
+            tools:text="Judul"/>
 
         <TextView
             android:id="@+id/txtDonatur"
@@ -51,21 +52,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="@{homeDetailDonation.penggalang}"
+            android:text="@{`Penggalang: ` + homeDetailDonation.penggalang}"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtJudul" />
+            app:layout_constraintTop_toBottomOf="@+id/txtJudul"
+            tools:text="donatur" />
 
         <TextView
             android:id="@+id/txtSisaHari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
-            android:text="@{homeDetailDonation.hari}"
+            android:text="@{`(sisa waktu ` + homeDetailDonation.hari + ` hari)`}"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/txtDonatur"
-            app:layout_constraintTop_toBottomOf="@+id/txtJudul" />
+            app:layout_constraintTop_toBottomOf="@+id/txtJudul"
+            tools:text="sisa hari" />
+
 
         <TextView
             android:id="@+id/textView6"
@@ -85,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:text="@{homeDetailDonation.terkumpul}"
+            android:text="@{`Rp` + homeDetailDonation.terkumpul}"
             android:textSize="16sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,46 +110,25 @@
             android:id="@+id/txtTarget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
-            android:text="@{homeDetailDonation.goals}"
+            android:text="@{`Rp` + homeDetailDonation.goals}"
             android:textSize="16sp"
             app:fontFamily="sans-serif-medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
-            android:text="Identitas Terverifikasi"
-            app:fontFamily="sans-serif-light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTerdanai" />
-
-        <Button
-            android:id="@+id/btnBagikan"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginBottom="60dp"
-            android:text="Bagikan"
-            app:icon="@drawable/ic_baseline_share_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:text="target" />
 
         <Button
             android:id="@+id/btnDonasikan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="44dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="24dp"
+            android:onClick="@{ (view) -> detailDonationListener.onDetailDonateClickListener(view, homeDetailDonation)}"
             android:text="Donasikan"
-            android:onClick="@{detailDonationListener::onDetailDonateClickListener}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -166,17 +149,20 @@
             android:text="Deskripsi"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTerdanai" />
 
         <TextView
             android:id="@+id/txtDeskripsi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:fontFamily="sans-serif-medium"
             android:text="@{homeDetailDonation.deskripsi}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            tools:text="deskripsi" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

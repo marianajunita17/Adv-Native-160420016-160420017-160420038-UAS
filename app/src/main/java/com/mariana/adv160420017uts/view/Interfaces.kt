@@ -29,11 +29,7 @@ interface ButtonDonateClickListener {
 }
 
 interface ButtonDetailDonateClickListener {
-    fun onDetailDonateClickListener(v: View)
-}
-
-interface ButtonShareClickListener {
-    fun onShareClickListener(v: View)
+    fun onDetailDonateClickListener(v: View, donation: Donation)
 }
 
 interface ButtonEditProfile {
@@ -54,4 +50,12 @@ interface SwipeRefreshInterface {
 
 interface ButtonClickInterface {
     fun logout(v: View)
+}
+
+interface ProgressBarInterface {
+    fun progressBarValue(terkumpul: String, target: String): Int
+}
+
+interface ButtonDonateClick {
+    fun donate(view: View, donation: Donation)
 }

@@ -16,8 +16,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "1",
             "title": "Bantu Generasi Muda melanjutkan Pendidikan",
             "penggalang": "Junita",
-            "terkumpul": "Rp98.456.387",
-            "goals": "Rp200.000.000",
+            "terkumpul": "98456387",
+            "goals": "200000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "60",
             "photo_url": "https://cdn1-production-images-kly.akamaized.net/6Ticnyku92G5eASXDLvTSwvlqN0=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1203129/original/008505600_1460629198-382805-900-1457598379-eyeem-79683330.jpg"
@@ -26,8 +26,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "2",
             "title": "Sembuhkan anak saya",
             "penggalang": "Mariana",
-            "terkumpul": "Rp135.897.354",
-            "goals": "Rp250.000.000",
+            "terkumpul": "135897354",
+            "goals": "250000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "46",
             "photo_url": "https://d1bpj0tv6vfxyp.cloudfront.net/articles/819014_12-1-2021_12-36-44.jpeg"
@@ -36,8 +36,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "3",
             "title": "Sel kanker membunuh",
             "penggalang": "Satu Jiwa",
-            "terkumpul": "Rp115.456.387",
-            "goals": "Rp200.000.000",
+            "terkumpul": "115456387",
+            "goals": "200000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "50",
             "photo_url": "https://images-cdn.welcomesoftware.com/Zz01OWMzZTc5ZTAwOTUxMWVkYjdhMjg2ZjljNmIwZDc1Zg==/Inilah%205%20Jenis%20Kanker%20yang%20Paling%20Banyak%20Menyerang%20Rakyat%20Indonesia.jpg"
@@ -46,8 +46,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "4",
             "title": "Benjolan Tumor di Leher",
             "penggalang": "Satu Jiwa",
-            "terkumpul": "Rp15.456.387",
-            "goals": "Rp270.000.000",
+            "terkumpul": "15456387",
+            "goals": "270000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "150",
             "photo_url": "https://res.cloudinary.com/dk0z4ums3/image/upload/v1649473809/attached_image/mengenal-manfaat-dan-risiko-operasi-tumor-otak-dengan-fluorescence.jpg"
@@ -56,8 +56,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "5",
             "title": "Alami Jantung Bocor",
             "penggalang": "Satu Jiwa",
-            "terkumpul": "Rp4.468.387",
-            "goals": "Rp36.000.000",
+            "terkumpul": "4468387",
+            "goals": "36000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "78",
             "photo_url": "https://fastcdn.benihbaik.com/campaign/thumbnail/benihbaik_2020-11-06_1604649028_PT_5fa50044c2a6c.jpg"
@@ -66,8 +66,8 @@ fun addDonationData(): ArrayList<Donation> {
             "id": "6",
             "title": "Sedekah untuk warga membutuhkan",
             "penggalang": "Satu Jiwa",
-            "terkumpul": "Rp225.730.937",
-            "goals": "Rp500.000.000",
+            "terkumpul": "225730937",
+            "goals": "500000000",
             "deskripsi": "Lorem Ipsum dolor sit amet",
             "hari": "90",
             "photo_url": "https://lirboyo.net/wp-content/uploads/2021/12/Sedekah-tidak-tepat.jpg"
@@ -175,19 +175,19 @@ fun addSubscriptionData(): ArrayList<Subscription> {
                   {
                     "id": "1",
                     "title": "BantuPasien Donasi Kebutuhan Pasien Tiap Bulan",
-                    "dana": "30.000",
+                    "dana": "30000",
                     "photo_url": "https://v-images2.antarafoto.com/bantu-pasien-langka-lmmk01-prv.jpg"
                   },
                   {
                     "id": "2",
                     "title": "TanamPohon Setiap Bulannya",
-                    "dana": "130.000",
+                    "dana": "130000",
                     "photo_url": "https://cdn0-production-images-kly.akamaized.net/FbCvl4w0i5HSUd4GGKm-H46O4xk=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4232811/original/046945700_1668945623-close-up-picture-hand-holding-planting-sapling-plant_1_.jpg"
                   },
                   {
                     "id": "3",
                     "title": "TanamBunga Bantu membuat taman",
-                    "dana": "50.000",
+                    "dana": "50000",
                     "photo_url": "https://blogpictures.99.co/cara-menanam-bunga-header.jpg"
                   }
             ]

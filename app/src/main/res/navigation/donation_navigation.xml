@@ -49,7 +49,7 @@
         tools:layout="@layout/fragment_home_detail" >
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="integer" />
         <action
             android:id="@+id/actionDetailHome"
             app:destination="@id/itemHome" />

@@ -12,10 +12,8 @@ import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.databinding.FragmentDonateDetailBinding
 import com.mariana.adv160420017uts.view.ButtonMyDetailDonateClickListener
 import com.mariana.adv160420017uts.viewmodel.DonateDetailViewModel
-import kotlinx.android.synthetic.main.fragment_donate.*
-import kotlinx.android.synthetic.main.fragment_donate_detail.*
 
-class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener{
+class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener {
     private lateinit var viewModel: DonateDetailViewModel
     private lateinit var dataBinding: FragmentDonateDetailBinding
 
@@ -34,7 +32,7 @@ class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        dataBinding = DataBindingUtil.inflate<FragmentDonateDetailBinding>(inflater, R.layout.fragment_donate_detail,
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_donate_detail,
             container, false)
         return dataBinding.root
     }
@@ -42,13 +40,12 @@ class DonateDetailFragment : Fragment(), ButtonMyDetailDonateClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments!=null){
-            var id = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
-            viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
-            viewModel.fetch(id)
-        }
+        val id = DonateDetailFragmentArgs.fromBundle(requireArguments()).id
+        viewModel = ViewModelProvider(this).get(DonateDetailViewModel::class.java)
+        viewModel.fetch(id)
 
         dataBinding.donationListener = this
+
         observeViewModel()
     }
 

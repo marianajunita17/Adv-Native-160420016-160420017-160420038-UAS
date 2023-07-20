@@ -1,6 +1,7 @@
 package com.mariana.adv160420017uts.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.mariana.adv160420017uts.model.Donation
@@ -31,31 +32,12 @@ class HomeDetailViewModel(application: Application): AndroidViewModel(applicatio
     fun fetch(id: Int) {
         launch {
             buildDB(getApplication()).apply {
-                donationLD.postValue(this.donationDao().detailDonation(id))
+                val donation = this.donationDao().detailDonation(id)
+                donation?.let {
+                    donationLD.postValue(it)
+                }
+
             }
         }
-//        queue = Volley.newRequestQueue(getApplication())
-//        val url = "https://raw.githubusercontent.com/marianajunita17/json-anmp-uts/main/donation.json"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            {
-//                val sType = object : TypeToken<ArrayList<Donation>>() { }.type
-//                val result = Gson().fromJson<ArrayList<Donation>>(it, sType)
-//
-//                for (d in result){
-//                    if (d.id == id){
-//                        donationLD.value = d
-//                        Log.d("loopdetail", d.id.toString())
-//                    }
-//                }
-//                Log.d("involleydetail", result.toString())
-//            },
-//            {
-//                Log.d("involleydetail", it.toString())
-//            })
-//
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
     }
 }

@@ -8,12 +8,14 @@ import androidx.databinding.BindingAdapter
 import androidx.room.Room.databaseBuilder
 import com.google.gson.Gson
 import com.mariana.adv160420017uts.R
+import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.DonationDatabase
 import com.mariana.adv160420017uts.model.User
 import com.mariana.adv160420017uts.util.Util.Companion.DB_NAME
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import java.util.Locale
 
 class Util {
     companion object {

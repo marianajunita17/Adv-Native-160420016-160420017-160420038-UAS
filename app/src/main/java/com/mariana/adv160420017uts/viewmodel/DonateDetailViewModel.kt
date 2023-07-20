@@ -18,20 +18,12 @@ class DonateDetailViewModel(application: Application):
     private val job = Job()
 
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = job + Dispatchers.IO
 
     val donationHistoryLD = MutableLiveData<DonationHistory>()
     val donationLD = MutableLiveData<Donation>()
 
     fun fetch(id: Int) {
-        launch {
-            buildDB(getApplication()).apply {
-                donationHistoryLD.postValue(this.donationHistoryDao().detailHistoryDonation(id))
-            }
-        }
-    }
-
-    fun displayMyDonate(id: Int) {
         launch {
             buildDB(getApplication()).apply {
                 donationHistoryLD.postValue(this.donationHistoryDao().detailHistoryDonation(id))

@@ -52,7 +52,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         launch{
             buildDB(getApplication()).apply {
                 if (username.isNotBlank() && password.isNotBlank()) {
-                    if (password.length > 8) {
+                    if (password.length >= 8) {
                         val user = this.userDao().login(username, password)
                         user?.let {
                             profileLD.postValue(it)
