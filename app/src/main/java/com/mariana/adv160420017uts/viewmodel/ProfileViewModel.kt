@@ -90,7 +90,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
                         }
                     }
 
-                    if (user.password.length > 8){
+                    if (user.password.length >= 8){
                         if (user.numberTelp.length < 10 || user.numberTelp.length > 12){
                             onSuccess("Nomor telepon harus 10-12 digit")
                         } else {
@@ -105,7 +105,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
                             }
                         }
                     } else {
-                        onSuccess("Password harus lebih dari 8 karakter")
+                        onSuccess("Password minimum 8 karakter")
                     }
                 } else {
                     onSuccess("Username atau password tidak boleh kosong")
