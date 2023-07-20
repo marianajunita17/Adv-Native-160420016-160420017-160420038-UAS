@@ -5,17 +5,19 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
-import androidx.room.Room
 import androidx.room.Room.databaseBuilder
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mariana.adv160420017uts.R
 import com.mariana.adv160420017uts.model.DonationDatabase
+import com.mariana.adv160420017uts.util.Util.Companion.DB_NAME
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-val DB_NAME = "donasidb"
+class Util {
+    companion object {
+        val DB_NAME = "donasidb"
+    }
+}
 
 @BindingAdapter("android:imageUrl", "android:progressBar")
 fun PhotoUrl(view: ImageView, url: String?, progressBar: ProgressBar) {

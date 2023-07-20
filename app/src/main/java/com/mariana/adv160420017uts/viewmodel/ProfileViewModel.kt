@@ -29,12 +29,15 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
         }
     }
 
-    fun register(user: User) {
+    fun register(user: User, onSuccess: (success: Boolean) -> Unit) {
         launch {
             donateDB(getApplication()).apply {
                 val id = this.userDao().register(user)
-                if (id != 0.toLong())
+                if (id != 0.toLong()) {
                     profileLD.value = user
+                    onSuccess(true)
+                } else
+                    onSuccess(false)
             }
         }
     }

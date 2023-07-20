@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="register"
+            name="user"
             type="com.mariana.adv160420017uts.model.User" />
         <variable
             name="registerListener"
@@ -48,7 +48,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
-                android:text="@={register.username}"/>
+                android:text="@={user.username}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout11"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPasswordRegist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:text="@={user.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -60,7 +80,7 @@
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
 
             <TextView
                 android:id="@+id/textView15"
@@ -74,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:text="Male"
                 android:tag="1"
-                android:checked="@{register.gender == 1 ? true : false}"
-                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 1, register)}"/>
+                android:checked="@{user.gender == 1 ? true : false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 1, user)}"/>
 
             <RadioButton
                 android:id="@+id/radioButton2"
@@ -83,8 +103,8 @@
                 android:layout_height="wrap_content"
                 android:text="Female"
                 android:tag="2"
-                android:checked="@{register.gender == 2 ? true :  false}"
-                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 2, register)}"/>
+                android:checked="@{user.gender == 2 ? true :  false}"
+                android:onClick="@{(view)->radioListener.onRadioClickGender(view, 2, user)}"/>
 
         </RadioGroup>
 
@@ -105,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Profesi"
-                android:text="@={register.profession}" />
+                android:text="@={user.profession}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telephone"
-                android:text="@={register.numberTelp}"/>
+                android:text="@={user.numberTelp}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

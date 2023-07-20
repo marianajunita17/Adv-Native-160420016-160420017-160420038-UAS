@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.mariana.adv160420017uts.util.Util
 
 @Database(entities = arrayOf(Donation::class, User::class, MyDonation::class, Subscription::class), version = 1)
 abstract class DonationDatabase :RoomDatabase(){
@@ -18,7 +19,7 @@ abstract class DonationDatabase :RoomDatabase(){
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                DonationDatabase::class.java, "donasidb")
+                DonationDatabase::class.java, Util.DB_NAME)
                 .build()
 
         operator fun invoke(context: Context) {

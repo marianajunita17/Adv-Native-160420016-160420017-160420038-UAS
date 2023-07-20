@@ -31,20 +31,18 @@ class HomeListViewModel(application: Application)
         loadingLD.value = true
 
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                DonationDatabase::class.java, "donateDB"
-            ).build()
-
-            donationsLD.value = db.donationDao().selectAllDonation()
+            donateDB(getApplication()).apply {
+                donationsLD.value = this.donationDao().selectAllDonation()
+            }
             loadingLD.value = false
         }
     }
 
     fun insertDonation(myDonation: MyDonation) {
         launch {
-            val db = donateDB(getApplication())
-            db.myDonationDao().donate(myDonation)
+            donateDB(getApplication()).apply {
+                this.myDonationDao().donate(myDonation)
+            }
         }
     }
 }
