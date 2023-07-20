@@ -1,6 +1,7 @@
 package com.mariana.adv160420017uts.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
@@ -8,6 +9,7 @@ import com.mariana.adv160420017uts.model.Donation
 import com.mariana.adv160420017uts.model.DonationDatabase
 import com.mariana.adv160420017uts.model.MyDonation
 import com.mariana.adv160420017uts.util.donateDB
+import com.mariana.adv160420017uts.view.HomePageInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -21,6 +23,8 @@ class HomeListViewModel(application: Application)
     val donationLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
 
+    var isRefreshing = false
+
     private var job = Job()
 
     override val coroutineContext: CoroutineContext
@@ -32,9 +36,9 @@ class HomeListViewModel(application: Application)
 
         launch {
             donateDB(getApplication()).apply {
-                donationsLD.value = this.donationDao().selectAllDonation()
+                donationsLD.postValue(this.donationDao().selectAllDonation())
             }
-            loadingLD.value = false
+            loadingLD.postValue(false)
         }
     }
 
