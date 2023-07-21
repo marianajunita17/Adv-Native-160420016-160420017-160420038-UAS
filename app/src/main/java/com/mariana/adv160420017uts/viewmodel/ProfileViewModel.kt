@@ -64,6 +64,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
                     } else {
                         onSuccess("Password harus lebih dari 8 karakter")
                     }
+                } else {
+                    onSuccess("Username atau password tidak boleh kosong")
                 }
             }
         }
