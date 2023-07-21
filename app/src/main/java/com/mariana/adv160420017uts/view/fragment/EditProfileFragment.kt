@@ -53,7 +53,7 @@ class EditProfileFragment : Fragment(), ButtonSaveEditProfile {
                 val action = EditProfileFragmentDirections.actionEditProfile()
                 Navigation.findNavController(v).navigate(action)
             } else {
-                Toast.makeText(v.context, "Update profile gagal!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(v.context, it, Toast.LENGTH_SHORT).show()
             }
         }
     }

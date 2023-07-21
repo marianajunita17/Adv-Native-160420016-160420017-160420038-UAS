@@ -119,14 +119,27 @@ class ProfileViewModel(application: Application): AndroidViewModel(application),
     fun editProfile(user: User, onSuccess: (msg: String) -> Unit) {
         launch {
             buildDB(getApplication()).apply {
-                val affected = this.userDao().editProfile(user.password, user.numberTelp, user.username)
-                if (affected != 0) {
-                    profileLD.postValue(user)
-                    sessionLogin(user.username, Gson().toJson(user))
-                    onSuccess("Update data berhasil")
+                if(user.password.isNotBlank() && user.numberTelp.isNotBlank()){
+                    if (user.password.length >= 8){
+                        if (user.numberTelp.length < 10 || user.numberTelp.length > 12){
+                            onSuccess("Nomor telepon 10-12 digit")
+                        } else {
+                            val affected = this.userDao().editProfile(user.password, user.numberTelp, user.username)
+                            if (affected != 0) {
+                                profileLD.postValue(user)
+                                sessionLogin(user.username, Gson().toJson(user))
+                                onSuccess("Update data berhasil")
+                            } else {
+                                onSuccess("Update data gagal")
+                            }
+                        }
+                    } else {
+                        onSuccess("Password minimum 8 karakter")
+                    }
                 } else {
-                    onSuccess("Update data gagal")
+                    onSuccess("Password atau nomor telepon tidak boleh kosong")
                 }
+
             }
         }
     }
