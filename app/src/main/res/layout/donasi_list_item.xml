@@ -24,10 +24,12 @@
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +42,8 @@
                     android:id="@+id/imgViewDonasiSaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@{donation.photoUrl}"
+                    android:imageUrl="@{donation.photoUrl}"
+                    android:progressBar="@{progressDonasi}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -62,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@{donationDetail.tanggalDonasi}"
                     app:layout_constraintStart_toEndOf="@+id/imgViewDonasiSaya"
                     app:layout_constraintTop_toBottomOf="@+id/txtJudulDonasi" />
@@ -72,11 +76,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="More"
-                    android:tag="@{donationDetail.id}"
                     android:onClick="@{detailListener::onButtonMyDonate}"
+                    android:tag="@{donationDetail.id}"
+                    android:text="More"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTanggalDonasi" />
 
                 <ProgressBar
                     android:id="@+id/progressDonasi"

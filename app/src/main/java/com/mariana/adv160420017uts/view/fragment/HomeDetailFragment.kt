@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -81,5 +82,6 @@ class HomeDetailFragment : Fragment(), ButtonDetailDonateClickListener, Progress
 
         val donate = DonationHistory(id.toString(), nominal.toString(), current, profileViewModel.getUserFromSharedPref().username)
         viewModel.addDonate(donate)
+        Toast.makeText(view.context, "Donasi Berhasil", Toast.LENGTH_SHORT).show()
     }
 }

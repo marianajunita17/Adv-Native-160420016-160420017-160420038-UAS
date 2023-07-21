@@ -82,7 +82,8 @@ class LoginFragment : Fragment(), ButtonLoginClickListener, ButtonRegisterClickL
     }
 
     override fun onRegisterClickListener(v: View) {
-        Navigation.findNavController(v).navigate(LoginFragmentDirections.actionRegisterFragment())
+        val action = LoginFragmentDirections.actionRegisterFragment()
+        Navigation.findNavController(v).navigate(action)
     }
 
 }

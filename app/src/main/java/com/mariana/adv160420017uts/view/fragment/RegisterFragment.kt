@@ -41,7 +41,7 @@ class RegisterFragment : Fragment(), ButtonRegisterClickListener, RadioClickGend
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        dataBinding.user = User("", "", 1, "", 0, "")
+        dataBinding.user = User("", "", 1, "", 0, "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg")
         dataBinding.registerListener = this
 
         observeViewModel(view)
